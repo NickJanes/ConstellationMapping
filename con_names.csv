@@ -1,0 +1,89 @@
+Order, Constellation, Abbreviation, Description, Type, Source
+1,Andromeda,And,Daughter of Queen Cassiopeia,Myth/Legend,Almagest
+2,Antlia,Ant,Robert Boyle’s Air Pump,Scientific,Lacaille
+3,Apus,Aps,Bird of Paradise,Animal,Bayer
+4,Aquarius,Aqr,The Water Carrier,Zodiac,Almagest
+5,Aquila,Aql,The Eagle,Myth/Legend,Almagest
+6,Ara,Ara,The Altar,Myth/Legend,Almagest
+7,Aries,Ari,The Ram,Zodiac,Almagest
+8,Auriga,Aur,The Charioteer,Myth/Legend,Almagest
+9,Bootes,Boo,The Herdsman,Myth/Legend,Almagest
+10,Caelum,Cae,The Chisel,Scientific,Lacaille
+11,Camelopardalis,Cam,The Giraffe,Animal,Bartsch
+12,Cancer,Cnc,The Crab,Zodiac,Almagest
+13,Canes Venatici,CVn,The Hunting Dogs,Animal,Hevelius
+14,Canis Major,CMa,The Greater Dog (companion of Orion),Myth/Legend,Almagest
+15,Canis Minor,CMi,The Lesser Dog (companion of Orion),Myth/Legend,Almagest
+16,Capricornius,Cap,The Sea Goat,Zodiac,Almagest
+17,Carina,Car,The Keel (part of Argo Navis),Myth/Legend,Lacaille
+18,Cassiopeia,Cas,The Queen of Ethiopia,Myth/Legend,Almagest
+19,Centaurus,Cen,The Centaur,Myth/Legend,Almagest
+20,Cepheus,Cep,King Cepheus of Ethiopia,Myth/Legend,Almagest
+21,Cetus,Cet,The Whale (or sea monster),Myth/Legend,Almagest
+22,Chamaeleon,Cha,The Chamaeleon,Animal,Bayer
+23,Circinus,Cir,The Compasses,Scientific,Lacaille
+24,Columba,Col,The Dove,Animal,Bartsch/Bayer
+25,Coma Berenices,Com,Queen Berenice of Egypt’s hair,Myth/Legend,
+26,Corona Australis,CrA,The Southern Crown,Myth/Legend,Almagest
+27,Corona Borealis,CrB,The Northern Crown,Myth/Legend,Almagest
+28,Corvus,Crv,The Crow,Myth/Legend,Almagest
+29,Crater,Crt,The Cup (the goblet of Apollo),Myth/Legend,Almagest
+30,Crux,Cru,The Southern Cross,Misc,
+31,Cygnus,Cyg,The Swan,Myth/Legend,Almagest
+32,Delphinius,Del,The Dolphin,Myth/Legend,Almagest
+33,Dorado,Dor,The Goldfish/The Swordfish,Animal,Bayer
+34,Draco,Dra,The Dragon,Myth/Legend,Almagest
+35,Equuleus,Equ,The Little Horse,Myth/Legend,Almagest
+36,Eridanus,Eri,The River,Myth/Legend,Almagest
+37,Fornax,For,The Furnace,Scientific,Lacaille
+38,Gemini,Gem,The Twins,Zodiac,Almagest
+39,Grus,Gru,The Crane,Animal,Bayer
+40,Hercules,Her,Hercules,Myth/Legend,Almagest
+41,Horologium,Hor,The Pendulum Clock,Scientific,Lacaille
+42,Hydra,Hya,The Water Snake,Myth/Legend,Almagest
+43,Hydrus,Hyi,The Lesser Water Snake,Animal,Bayer
+44,Indus,Ind,The Native American Indian,Misc,Bayer
+45,Lacerta,Lac,The Lizard,Animal,Hevelius
+46,Leo,Leo,The Lion,Zodiac,Almagest
+47,Leo Minor,LMi,The Lesser Lion,Animal,Hevelius
+48,Lepus,Lep,The Hare,Myth/Legend,Almagest
+49,Libra,Lib,The Scales,Zodiac,Almagest
+50,Lupus,Lup,The Wolf,Myth/Legend,Almagest
+51,Lynx,Lyn,The Lynx,Animal,Hevelius
+52,Lyra,Lyr,The Lyre (given by Apollo to Orpheus),Myth/Legend,Almagest
+53,Mensa,Men,The Table Mountain (Cape of Good Hope),Misc,Lacaille
+54,Microscopium,Mic,The Microscope,Scientific,Lacaille
+55,Monoceros,Mon,The Unicorn,Myth/Legend,Bartsch
+56,Musca,Mus,The Fly,Animal,Bayer
+57,Norma,Nor,The Level,Scientific,Lacaille
+58,Octans,Oct,The Octant,Scientific,Lacaille
+59,Ophiuchus,Oph,The Serpent Holder,Myth/Legend,Almagest
+60,Orion,Ori,The Hunter,Myth/Legend,Almagest
+61,Pavo,Pav,The Peacock,Animal,Bayer
+62,Pegasus,Peg,"Pegasus, the winged horse",Myth/Legend,Almagest
+63,Perseus,Per,Perseus (rescued Andromeda from Cetus),Myth/Legend,Almagest
+64,Phoenix,Phe,The Phoenix,Myth/Legend,Bayer
+65,Pictor,Pic,The Painter’s Easel,Scientific,Lacaille
+66,Pisces,Psc,The Fishes,Zodiac,Almagest
+67,Piscus Austrinus,PsA,The Southern Fish,Myth/Legend,Almagest
+68,Puppis,Pup,The Stern (of Argo Navis),Myth/Legend,Lacaille
+69,Pyxis,Pyx,The Ships’s Compass (or Argo Navis),Myth/Legend,Lacaille
+70,Reticulum,Ret,The Net,Scientific,Lacaille
+71,Sagitta,Sge,The Arrow,Myth/Legend,Almagest
+72,Sagittarius,Sgr,The Archer,Zodiac,Almagest
+73,Scorpius,Sco,The Scorpion,Zodiac,Almagest
+74,Sculptor,Scl,The Sculptor’s Workshop,Scientific,Lacaille
+75,Scutum,Sct,The Shield (of King John Sobieski III),Misc,Hevelius
+76,Serpens,Ser,The Serpent (carried by Ophiuchus),Myth/Legend,Almagest
+77,Sextans,Sex,The Sextant,Scientific,Hevelius
+78,Taurus,Tau,The Bull,Zodiac,Almagest
+79,Telescopium,Tel,The Telescope,Scientific,Lacaille
+80,Triangulum,Tri,The Triangle,Misc,Almagest
+81,Triangulum Australe,TrA,The Southern Triangle,Misc,Bayer
+82,Tucuna,Tuc,The Toucan,Animal,Bayer
+83,Ursa Major,UMa,The Great Bear,Myth/Legend,Almagest
+84,Ursa Minor,UMi,The Lesser Bear,Myth/Legend,Almagest
+85,Vela,Vel,The Sails (of Argo Navis),Myth/Legend,Lacaille
+86,Virgo,Vir,The Virgin,Zodiac,Almagest
+87,Volans,Vol,The Flying Fish,Animal,Bayer
+88,Vulpecula,Vul,The Fox,Animal,Hevelius
