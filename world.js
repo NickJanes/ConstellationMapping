@@ -27,5 +27,9 @@ svg_world.append("path")
 
 d3.json("ne_50m_land.json").then(function(land){
 
+  svg_world.append("g")
+    .attr("class", "landmap")
+    .selectAll("path")
+    .data(topojson.feature(land, land.features).features)
 }); 
 //======================================================================
