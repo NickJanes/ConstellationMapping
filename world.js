@@ -21,6 +21,7 @@ var path = d3.geoPath()
 var graticule = d3.geoGraticule()
                   .precision([10]);
 console.log(graticule.lines())
+console.log(graticule.outline())
 var mouseover = function() {
   d3.select(this)
       .style("opacity", 0.5)
