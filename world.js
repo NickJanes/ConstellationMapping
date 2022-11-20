@@ -20,7 +20,12 @@ var path = d3.geo.path()
 
 var graticule = d3.geo.graticule();
 
+svg_world.append("path")
+    .datum(graticule)
+    .attr("class", "graticule")
+    .attr("d", path);
+
 d3.json("ne_50m_land.json").then(function(land){
-  
+
 }); 
 //======================================================================
