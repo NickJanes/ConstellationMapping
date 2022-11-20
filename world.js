@@ -4,32 +4,33 @@ world_height = 500 - margin.top - margin.bottom;
 
 var svg_world = d3.select("body")
   .append("svg_world")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
+  .attr("width", world_width + margin.left + margin.right)
+  .attr("height", world_height + margin.top + margin.bottom)
 
 //======================================================================
 //world projection (Built with refrence from Mike Bostock) https://bl.ocks.org/mbostock/3682676
 //======================================================================
-var projection = d3.geo.winkel3()
+var projection = d3.geoWinkel3()
     .scale(182)
-    .translate([width / 2, height / 2])
-    .precision(.1);
+    .translate([world_width / 2, world_height / 2])
 
-var path = d3.geo.path()
+
+var path = d3.geoPath()
     .projection(projection);
 
-var graticule = d3.geo.graticule();
+var graticule = d3.geoGraticule();
 
 svg_world.append("path")
     .datum(graticule)
     .attr("class", "graticule")
     .attr("d", path);
 
-d3.json("ne_50m_land.json").then(function(land){
-
-  svg_world.append("g")
-    .attr("class", "landmap")
-    .selectAll("path")
-    .data(topojson.feature(land, land.features).features)
+d3.json("land-50m.json").then(function(world){
+  console.log(topojson.feature(world, world.objects.land))
+  svg.insert("path", ".graticule")
+      .datum(topojson.feature(world, world.objects.land))
+      .attr("class", "land")
+      .attr("d", path);
+  
 }); 
 //======================================================================
