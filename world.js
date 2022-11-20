@@ -18,8 +18,9 @@ var projection = d3.geoWinkel3()
 var path = d3.geoPath()
     .projection(projection);
 
-var graticule = d3.geoGraticule();
-
+var graticule = d3.geoGraticule()
+                  .precision([10]);
+console.log(graticule.lines())
 var mouseover = function() {
   d3.select(this)
       .style("opacity", 0.5)
@@ -31,6 +32,7 @@ d3.select(this)
   .style("opacity", 1)
   .style("fill", "black")
 }
+
 svg_world.append("defs").append("path")
     .datum({type: "Sphere"})
     .attr("id", "sphere")
