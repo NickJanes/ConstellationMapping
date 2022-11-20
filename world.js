@@ -20,6 +20,17 @@ var path = d3.geoPath()
 
 var graticule = d3.geoGraticule();
 
+var mouseover = function() {
+  d3.select(this)
+      .style("opacity", 0.5)
+      .style("fill", "lightgray")
+  }
+
+var mouseout = function() {
+d3.select(this)
+  .style("opacity", 1)
+  .style("fill", "black")
+}
 svg_world.append("defs").append("path")
     .datum({type: "Sphere"})
     .attr("id", "sphere")
@@ -36,7 +47,8 @@ svg_world.append("use")
 svg_world.append("path")
     .datum(graticule)
     .attr("class", "graticule")
-    .attr("d", path);
+    .attr("d", path)
+    ;
 
 d3.json("land-50m.json").then(function(world){
   
