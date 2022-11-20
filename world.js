@@ -1,6 +1,6 @@
 var margin = {top: 20, right: 80, bottom: 30, left: 50},
-world_width = 750 - margin.left - margin.right,
-world_height = 500 - margin.top - margin.bottom;
+world_width = 700 - margin.left - margin.right,
+world_height = 475 - margin.top - margin.bottom;
 
 var svg_world = d3.select("body")
   .append("svg")
@@ -11,8 +11,8 @@ var svg_world = d3.select("body")
 //world projection (Built with refrence from Mike Bostock) https://bl.ocks.org/mbostock/3682676
 //======================================================================
 var projection = d3.geoWinkel3()
-    .scale(100)
-    .translate([world_width / 2, world_height / 2])
+    .scale(130)
+    .translate([world_width / 2 + 70, world_height / 2])
     .precision(.1)
 
 var path = d3.geoPath()
