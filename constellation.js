@@ -1,7 +1,7 @@
 
 var const_margin = {top: 50, right: 50, bottom: 50, left: 50};
-var const_width = 800 - const_margin.left - const_margin.right;
-var const_height = 500 - const_margin.top - const_margin.bottom;
+var const_width = 600 - const_margin.left - const_margin.right;
+var const_height = 600 - const_margin.top - const_margin.bottom;
 
 d3.select('body').style('background-color', 'black')
 
@@ -12,7 +12,7 @@ var const_svg = d3.select(".container")
     .attr("height", const_height + const_margin.top + const_margin.bottom)
     .style("background-color", "black")
 
-name = 'Corvus'
+name = 'Ursa Minor'
 abrv = ''
 promises = [d3.csv("con_names.csv"), 
             d3.text("constellation connection.tsv"),
@@ -42,23 +42,22 @@ Promise.all(promises).then(function(files) {
         stars = row.slice(3);
     })
     
-//    console.log(stars);
     
     files[2].map((row) => {
 //        console.log(typeof(row.id))
         for(var i = 0; i < stars.length; i++) {
             if(row['id'] == stars[i]) {
-                stars[i] = {x: parseFloat(row['x']), y: parseFloat(row['y'])}
+                console.log(row);
+                stars[i] = {x: parseFloat(row['ra']), y: parseFloat(row['dec'])}
             }
         }
     })
     
     xScale.domain([
-    d3.min(stars, (d) => { return Number(d.x); }),
+    d3.min(stars, (d) => { return d.x; }),
     d3.max(stars, (d) => { return d.x; })
     ]);
     
-    console.log(stars);
 
     
     yScale.domain([
@@ -66,9 +65,7 @@ Promise.all(promises).then(function(files) {
     d3.max(stars, (d) => { return d.y; })
     ]);
     
-    stars.map((star) => {
-        console.log("X is " + star.x + " and xScale is " + xScale(star.x));
-    })
+    console.log(stars);
     
     const dots = const_svg.selectAll(".dot")
         .data(stars)
@@ -86,6 +83,7 @@ Promise.all(promises).then(function(files) {
         .attr("x2", xScale(stars[i + 1].x))
         .attr("y2", yScale(stars[i + 1].y))
         .attr("stroke", "white")
-        .attr("stroke-width", "2");
+        .attr("stroke-width", "2")
+        .style("glow", "5px solid yellow");
     }
 })
