@@ -21,8 +21,16 @@ var path = d3.geoPath()
 var graticule = d3.geoGraticule()
                   .precision([10]);
 var lines = graticule.lines()                 
-console.log(lines)
-
+//console.log(lines)
+var lat_lines = lines.filter(function (l){
+  return l.coordinates[0][1] == l.coordinates[1][1];
+  })
+console.log(lat_lines.length)
+//lat_lines.splice(9,0, lat_lines[0])
+//lat_lines.splice(0, 1)
+//lat_lines[0].coordinates.push(lat_lines[1].coordinates.reverse())
+console.log(lat_lines)
+//console.log(lat_lines[8].coordinates)
 var mouseover = function() {
   d3.select(this)
       .style("opacity", 0.5)
