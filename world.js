@@ -20,7 +20,8 @@ var path = d3.geoPath()
 
 var graticule = d3.geoGraticule()
                   .precision([10]);
-console.log(graticule.lines())
+var lines = graticule.lines()                 
+console.log(lines)
 
 var mouseover = function() {
   d3.select(this)
