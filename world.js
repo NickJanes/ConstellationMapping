@@ -26,11 +26,13 @@ var lat_lines = lines.filter(function (l){
   return l.coordinates[0][1] == l.coordinates[1][1];
   })
 console.log(lat_lines.length)
-//lat_lines.splice(9,0, lat_lines[0])
-//lat_lines.splice(0, 1)
-//lat_lines[0].coordinates.push(lat_lines[1].coordinates.reverse())
+lat_lines.splice(9,0, lat_lines[0])
+lat_lines.splice(0, 1)
+lat_lines[0].coordinates.push(lat_lines[1].coordinates.reverse())
+lat_lines[0].coordinates.push(lat_lines[0].coordinates[0])
 console.log(lat_lines)
 //console.log(lat_lines[8].coordinates)
+console.log(lat_lines[0])
 var mouseover = function() {
   d3.select(this)
       .style("opacity", 0.5)
