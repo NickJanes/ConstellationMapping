@@ -75,17 +75,18 @@ d3.json("land-50m.json").then(function(world){
 }); 
 //======================================================================
 function buildPolygon(lineStrings){
-  //set the lineStrings to new polygon string;
+  //set the lineStrings to new polygonList
   var polygonList = lineStrings;
   for(i = 0; i < lineStrings.length && i+1 < lineStrings.length; i++){
       j = i+1
+      console.log("begin new element")
       polygonList[i].type = "Polygon"
       console.log(polygonList[i])
       polygonList[i].coordinates.push(polygonList[j].coordinates.reverse())
       console.log(polygonList[i].coordinates[0])
       polygonList[i].coordinates.push(polygonList[i].coordinates[0])
       console.log(polygonList[i])
-      console.log("\n")
+      console.log("end element")
   };
   return polygonList;
 };
