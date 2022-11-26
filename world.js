@@ -28,11 +28,12 @@ var lat_lines = lines.filter(function (l){
 console.log(lat_lines.length)
 lat_lines.splice(9,0, lat_lines[0])
 lat_lines.splice(0, 1)
-lat_lines[0].coordinates.push(lat_lines[1].coordinates.reverse())
-lat_lines[0].coordinates.push(lat_lines[0].coordinates[0])
-console.log(lat_lines)
+//lat_lines[0].coordinates.push(lat_lines[1].coordinates.reverse())
+//lat_lines[0].coordinates.push(lat_lines[0].coordinates[0])
+//console.log(lat_lines)
 //console.log(lat_lines[8].coordinates)
-console.log(lat_lines[0])
+//console.log(lat_lines[0])
+buildPolygon(lat_lines)
 var mouseover = function() {
   d3.select(this)
       .style("opacity", 0.5)
@@ -73,3 +74,18 @@ d3.json("land-50m.json").then(function(world){
   
 }); 
 //======================================================================
+function buildPolygon(lineStrings){
+  //set the lineStrings to new polygon string;
+  var polygonList = lineStrings;
+  var polygonEntry;
+  var currline;
+  var nextline;
+  for(i = 0; i < lineStrings.length; i++){
+    for(j = i+1; j < lineStrings.length; j++){
+      polygonList[i].coordinates.push(polygonList[j].coordinates.reverse())
+      polygonList[i].coordinates.push(polygonList[i].coordinates[0])
+      console.log(polygonList[i])
+      console.log("\n")
+    };
+  };
+};
