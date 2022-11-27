@@ -33,7 +33,7 @@ lat_lines.splice(0, 1)
 //console.log(lat_lines)
 //console.log(lat_lines[8].coordinates)
 //console.log(lat_lines[0])
-buildPolygon(lat_lines)
+var polygonList = buildPolygon(lat_lines)
 var mouseover = function() {
   d3.select(this)
       .style("opacity", 0.5)
@@ -76,17 +76,17 @@ d3.json("land-50m.json").then(function(world){
 //======================================================================
 function buildPolygon(lineStrings){
   //set the lineStrings to new polygonList
-  var polygonList = lineStrings;
+  var polyList = lineStrings;
   for(i = 0; i < lineStrings.length && i+1 < lineStrings.length; i++){
       j = i+1
       console.log("begin new element")
-      polygonList[i].type = "Polygon"
-      console.log(polygonList[i])
-      polygonList[i].coordinates.push(polygonList[j].coordinates.reverse())
-      console.log(polygonList[i].coordinates[0])
-      polygonList[i].coordinates.push(polygonList[i].coordinates[0])
-      console.log(polygonList[i])
+      polyList[i].type = "Polygon"
+      console.log(polyList[i])
+      polyList[i].coordinates.push(polyList[j].coordinates.reverse())
+      console.log(polyList[i].coordinates[0])
+      polyList[i].coordinates.push(polyList[i].coordinates[0])
+      console.log(polyList[i])
       console.log("end element")
   };
-  return polygonList;
+  return polyList;
 };
