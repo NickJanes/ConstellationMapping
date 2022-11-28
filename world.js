@@ -31,10 +31,25 @@ lat_lines.splice(9,0, lat_lines[0])
 lat_lines.splice(0, 1)
 
 //construct polygons from coordinates and remove last element
-var polygonList = buildPolygons(lat_lines)
-polygonList.splice(16, 1)
+var polygonLatLines = buildPolygons(lat_lines)
+console.log(lat_lines)
+polygonLatLines.splice(16, 1)
+//console.log(polygonLatLines)
+var geojsonLatLines = {
+  "type":"FeatureCollection",
+  "features":[]
+};
 
-console.log(polygonList)
+for(k = 0; k < polygonLatLines.length; k++){
+  geojsonLatLines.features.push({
+    "type": "Feature",
+    "geometry": polygonLatLines[k],
+    "properties": +k
+  })
+  //console.log(geojsonLatLines.features[k])
+}
+//console.log(geojsonLatLines)
+
 var mouseover = function() {
   d3.select(this)
       .style("opacity", 0.5)
@@ -73,6 +88,14 @@ d3.json("land-50m.json").then(function(world){
       .attr("class", "land")
       .attr("d", path);
   
+  //draw the selectable area  
+  svg_world.append("g")
+      .attr("class", "LatAreas")
+      .selectAll("path")
+      .data(topojson.feature(geojsonLatLines, geojsonLatLines.features).features)
+      .enter().append("path")
+      .attr("fill", "black")
+      .attr("d", path)
 }); 
 //======================================================================
 function buildPolygons(lineStrings){
@@ -81,7 +104,7 @@ function buildPolygons(lineStrings){
 
   for(i = 0; i < lineStrings.length && i+1 < lineStrings.length; i++){
       j = i+1
-      currentLine = polyList[i].coordinates
+      
       //we only want to reverse every other array
       if (j % 2 != 0)
         nextLine = polyList[j].coordinates.reverse();
@@ -89,10 +112,10 @@ function buildPolygons(lineStrings){
         nextLine = polyList[j].coordinates;
       
       polyList[i].type = "Polygon"
-      
-      currentLine.push(nextLine)
-      currentLine.push(currentLine[0])  
-      
+      console.log("begin new element")
+      polyList[i].coordinates.push(nextLine)
+      polyList[i].coordinates.push(polyList[i].coordinates[0])  
+      console.log(polyList[i])
   };
   return polyList;
 };
