@@ -48,7 +48,6 @@ for(k = 0; k < polygonLatLines.length; k++){
   //console.log(geojsonLatLines.features[k])
 }
 //console.log(geojsonLatLines)
-
 var mouseover = function() {
   d3.select(this)
       .style("opacity", 0.5)
@@ -99,7 +98,7 @@ d3.json("land-50m.json").then(function(world){
 //======================================================================
 function buildPolygons(lineStrings){
   //set the lineStrings to new polygonList
-  var polyList = [...lineStrings];
+  var polyList = lineStrings;
 
   for(i = 0, j = i+1; i < lineStrings.length && j < lineStrings.length; i++, j++){
       
@@ -112,10 +111,10 @@ function buildPolygons(lineStrings){
         nextLine = JSON.parse(JSON.stringify(polyList[j].coordinates));
       
       polyList[i].type = "Polygon"
-      console.log("begin new element")
+      //console.log("begin new element")
       polyList[i].coordinates.push(nextLine)
       polyList[i].coordinates.push(polyList[i].coordinates[0])  
-      console.log(polyList[i-1])
+      //console.log(polyList[i-1])
   };
   return polyList;
 };
