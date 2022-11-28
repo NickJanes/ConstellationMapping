@@ -2,7 +2,7 @@ var data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]; 
 var input = 1;
 
-var svg = d3.select('div#slider-svg')
+var svg = d3.select('body')
     .append('svg')
     .attr('width', 500)
     .attr('height', 500)
