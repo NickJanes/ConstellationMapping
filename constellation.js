@@ -52,7 +52,7 @@ Promise.all(promises).then(function(files) {
         }
     })
     
-    var stars;
+    let stars;
     files[1].split("\r\n").map((row) => {
         row = row.split(" ");
         if(row[0] != abrv) {
@@ -61,7 +61,7 @@ Promise.all(promises).then(function(files) {
 //        console.log(row);
         stars = row.slice(3);
     })
-    
+    console.log(stars)
     
     files[2].map((row) => {
 //        console.log(typeof(row.id))
