@@ -5,9 +5,9 @@ var input = 1;
 var svg = d3.select('body')
     .append('svg')
     .attr('width', 500)
-    .attr('height', 500)
+    .attr('height', 100)
     .append('g')
-    .attr('transform', 'translate(30, 450)');
+    .attr('transform', 'translate(30, 50)');
 
 var sliderStep = d3
     .sliderHorizontal()
