@@ -105,10 +105,11 @@ function buildPolygons(lineStrings){
       
       
       //we only want to reverse every other array
+      //need deepcopies of j got from https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f6a/
       if (j % 2 != 0)
-        nextLine = polyList[j].coordinates.reverse();
+        nextLine = JSON.parse(JSON.stringify(polyList[j].coordinates.reverse()));
       else
-        nextLine = polyList[j].coordinates;
+        nextLine = JSON.parse(JSON.stringify(polyList[j].coordinates));
       
       polyList[i].type = "Polygon"
       console.log("begin new element")
