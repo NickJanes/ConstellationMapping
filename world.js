@@ -15,8 +15,13 @@ var projection = d3.geoWinkel3()
     .translate([world_width / 2 + 70, world_height / 2])
     .precision(.1)
 
+var flatprojection = d3.geoMercator()
+    .scale(75)
+    .translate([world_width/2, world_height/2+25])
+    .precision(.1)
+
 var path = d3.geoPath()
-    .projection(projection);
+    .projection(flatprojection);
 
 var graticule = d3.geoGraticule()
                   .precision([10]);
@@ -88,7 +93,43 @@ d3.json("land-50m.json").then(function(world){
       .attr("class", "land")
       .attr("d", path);
   
-  //draw the selectable area  
+  //draw the selectable area
+  for(var itor = 0, offset = 40; itor < 16; itor++, offset = offset+20)
+{
+  svg_world.append("g")
+    .attr("class", "latitude area")
+    .attr("id", itor)
+    .attr("transform", "translate(0,"+offset +")")
+    .append("rect")
+    .attr("height", "20")
+    .attr("x", 49)
+    .attr("width", "472")
+    .attr("rx", "5")
+    .attr("fill", "lightgray")
+    .attr("stroke", "black")
+    .attr("opacity", 0.1)
+    .on("mouseover", function () { 
+      if(d3.select(this).style("opacity") < 0.8){
+        d3.select(this).style("opacity", 0.5)
+      }else{
+        return;
+      }
+     })
+    .on("mouseout", function(){
+      if(d3.select(this).style("opacity") < 0.8){
+        d3.select(this).style("opacity", 0.1)
+      }else{
+        return;
+      }
+    })
+    .on("click", function(){
+        svg_world.selectAll("rect")
+          .style("opacity", 0.1)
+        d3.select(this).style("opacity", 0.8)
+        
+    });
+
+}  
   svg_world.append("g")
       .attr("class", "LatAreas")
       .selectAll("path")
