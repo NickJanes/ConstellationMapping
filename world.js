@@ -32,7 +32,6 @@ lat_lines.splice(0, 1)
 
 //construct polygons from coordinates and remove last element
 var polygonLatLines = buildPolygons(lat_lines)
-console.log(lat_lines)
 polygonLatLines.splice(16, 1)
 //console.log(polygonLatLines)
 var geojsonLatLines = {
@@ -48,7 +47,7 @@ for(k = 0; k < polygonLatLines.length; k++){
   })
   //console.log(geojsonLatLines.features[k])
 }
-//console.log(geojsonLatLines)
+console.log(geojsonLatLines)
 
 var mouseover = function() {
   d3.select(this)
@@ -100,10 +99,10 @@ d3.json("land-50m.json").then(function(world){
 //======================================================================
 function buildPolygons(lineStrings){
   //set the lineStrings to new polygonList
-  var polyList = lineStrings;
+  var polyList = [...lineStrings];
 
-  for(i = 0; i < lineStrings.length && i+1 < lineStrings.length; i++){
-      j = i+1
+  for(i = 0, j = i+1; i < lineStrings.length && i+1 < lineStrings.length; i++, j++){
+      
       
       //we only want to reverse every other array
       if (j % 2 != 0)
