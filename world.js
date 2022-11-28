@@ -47,7 +47,7 @@ for(k = 0; k < polygonLatLines.length; k++){
   })
   //console.log(geojsonLatLines.features[k])
 }
-console.log(geojsonLatLines)
+//console.log(geojsonLatLines)
 
 var mouseover = function() {
   d3.select(this)
@@ -114,7 +114,7 @@ function buildPolygons(lineStrings){
       console.log("begin new element")
       polyList[i].coordinates.push(nextLine)
       polyList[i].coordinates.push(polyList[i].coordinates[0])  
-      console.log(polyList[i])
+      console.log(polyList[i-1])
   };
   return polyList;
 };
