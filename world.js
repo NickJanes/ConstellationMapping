@@ -106,7 +106,7 @@ function buildPolygons(lineStrings){
       j = i+1
       
       //we only want to reverse every other array
-      if (j % 2 == 0)
+      if (j % 2 != 0)
         nextLine = polyList[j].coordinates.reverse();
       else
         nextLine = polyList[j].coordinates;
