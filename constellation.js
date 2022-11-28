@@ -3,7 +3,7 @@ var const_margin = {top: 50, right: 50, bottom: 50, left: 50};
 var const_width = 600 - const_margin.left - const_margin.right;
 var const_height = 600 - const_margin.top - const_margin.bottom;
 
-d3.select('body').style('background-color', 'black')
+d3.select('body').style('background-color', 'white')
 
 var const_svg = d3.select(".container")
     .append('svg')
