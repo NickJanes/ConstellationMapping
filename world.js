@@ -80,12 +80,12 @@ svg_world.append("use")
     .attr("class", "fill")
     .attr("xlink:href", "#sphere");
 
-svg_world.append("path")
+/*svg_world.append("path")
     .datum(graticule)
     .attr("class", "graticule")
     .attr("d", path)
     ;
-
+*/
 d3.json("land-50m.json").then(function(world){
   
   svg_world.insert("path", ".graticule")
@@ -95,48 +95,41 @@ d3.json("land-50m.json").then(function(world){
   
   //draw the selectable area
   for(var itor = 0, offset = 40; itor < 16; itor++, offset = offset+20)
-{
-  svg_world.append("g")
-    .attr("class", "latitude area")
-    .attr("id", itor)
-    .attr("transform", "translate(0,"+offset +")")
-    .append("rect")
-    .attr("height", "20")
-    .attr("x", 49)
-    .attr("width", "472")
-    .attr("rx", "5")
-    .attr("fill", "lightgray")
-    .attr("stroke", "black")
-    .attr("opacity", 0.1)
-    .on("mouseover", function () { 
-      if(d3.select(this).style("opacity") < 0.8){
-        d3.select(this).style("opacity", 0.5)
-      }else{
-        return;
-      }
-     })
-    .on("mouseout", function(){
-      if(d3.select(this).style("opacity") < 0.8){
-        d3.select(this).style("opacity", 0.1)
-      }else{
-        return;
-      }
-    })
-    .on("click", function(){
-        svg_world.selectAll("rect")
-          .style("opacity", 0.1)
-        d3.select(this).style("opacity", 0.8)
-        
-    });
+  {
+    svg_world.append("g")
+      .attr("class", "latitude area")
+      .attr("id", itor)
+      .attr("transform", "translate(0,"+offset +")")
+      .append("rect")
+      .attr("height", "20")
+      .attr("x", 49)
+      .attr("width", "472")
+      .attr("rx", "5")
+      .attr("fill", "lightgray")
+      .attr("stroke", "black")
+      .attr("opacity", 0.1)
+      .on("mouseover", function () { 
+        if(d3.select(this).style("opacity") < 0.8){
+          d3.select(this).style("opacity", 0.5)
+        }else{
+          return;
+        }
+      })
+      .on("mouseout", function(){
+        if(d3.select(this).style("opacity") < 0.8){
+          d3.select(this).style("opacity", 0.1)
+        }else{
+          return;
+        }
+      })
+      .on("click", function(){
+          svg_world.selectAll("rect")
+            .style("opacity", 0.1)
+          d3.select(this).style("opacity", 0.8)
+          
+      });
 
-}  
-  svg_world.append("g")
-      .attr("class", "LatAreas")
-      .selectAll("path")
-      .data(geojsonLatLines.features)
-      .enter().append("path")
-      .attr("fill", "black")
-      .attr("d", path)
+  }  
 }); 
 //======================================================================
 function buildPolygons(lineStrings){
