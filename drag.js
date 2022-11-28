@@ -1,5 +1,8 @@
 lat = 45
-month = "December"
+var months_of_year= ["January","February","March","April","May","June","July",
+            "August","September","October","November","December"];
+
+console.log(months_of_year[input])
 
 // set the dimensions and margins of the graph
 margin = {top: 10, right: 100, bottom: 30, left: 30},
@@ -10,7 +13,7 @@ margin = {top: 10, right: 100, bottom: 30, left: 30},
 d3.csv("con_month_and_latitude.csv").then( function(data) {
 
     filteredData = data.filter(function(row) {
-        return row['Month'] == 'January';
+        return row['Month'] == months_of_year[input];
     });
     
     freqData = filteredData.map(function(d) { 

@@ -98,7 +98,7 @@ Promise.all(promises).then(function(files) {
         .on("mouseover", tooly)
         .on("mousemove", tooly)
         .on("mouseleave", ()=>{
-            start_tooltip.attr("opacity", 0)
+            star_tooltip.style('opacity', 0)
         })
     
     for(var i = 0; i < stars.length; i += 2) {
