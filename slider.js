@@ -7,7 +7,7 @@ var svg = d3.select('body')
     .attr('width', 500)
     .attr('height', 100)
     .append('g')
-    .attr('transform', 'translate(30, 50)');
+    .attr('transform', 'translate(140, 50)');
 
 var sliderStep = d3
     .sliderHorizontal()
