@@ -106,7 +106,7 @@ d3.json("land-50m.json").then(function(world){
       .attr("width", "472")
       .attr("rx", "5")
       .attr("fill", "lightgray")
-      .attr("stroke", "black")
+      
       .attr("opacity", 0.1)
       .on("mouseover", function () { 
         if(d3.select(this).style("opacity") < 0.8){
