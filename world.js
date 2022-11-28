@@ -92,7 +92,7 @@ d3.json("land-50m.json").then(function(world){
   svg_world.append("g")
       .attr("class", "LatAreas")
       .selectAll("path")
-      .data(topojson.feature(geojsonLatLines, geojsonLatLines.features).features)
+      .data(geojsonLatLines.features)
       .enter().append("path")
       .attr("fill", "black")
       .attr("d", path)
