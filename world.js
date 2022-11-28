@@ -26,14 +26,15 @@ var lat_lines = lines.filter(function (l){
   return l.coordinates[0][1] == l.coordinates[1][1];
   })
 console.log(lat_lines.length)
+//insert 0 lat line inbetween 10 and 20 degrees
 lat_lines.splice(9,0, lat_lines[0])
 lat_lines.splice(0, 1)
-//lat_lines[0].coordinates.push(lat_lines[1].coordinates.reverse())
-//lat_lines[0].coordinates.push(lat_lines[0].coordinates[0])
-//console.log(lat_lines)
-//console.log(lat_lines[8].coordinates)
-//console.log(lat_lines[0])
-var polygonList = buildPolygon(lat_lines)
+
+//construct polygons from coordinates and remove last element
+var polygonList = buildPolygons(lat_lines)
+polygonList.splice(16, 1)
+
+console.log(polygonList)
 var mouseover = function() {
   d3.select(this)
       .style("opacity", 0.5)
@@ -74,19 +75,24 @@ d3.json("land-50m.json").then(function(world){
   
 }); 
 //======================================================================
-function buildPolygon(lineStrings){
+function buildPolygons(lineStrings){
   //set the lineStrings to new polygonList
   var polyList = lineStrings;
+
   for(i = 0; i < lineStrings.length && i+1 < lineStrings.length; i++){
       j = i+1
-      console.log("begin new element")
+      currentLine = polyList[i].coordinates
+      //we only want to reverse every other array
+      if (j % 2 != 0)
+        nextLine = polyList[j].coordinates.reverse();
+      else
+        nextLine = polyList[j].coordinates;
+      
       polyList[i].type = "Polygon"
-      console.log(polyList[i])
-      polyList[i].coordinates.push(polyList[j].coordinates.reverse())
-      console.log(polyList[i].coordinates[0])
-      polyList[i].coordinates.push(polyList[i].coordinates[0])
-      console.log(polyList[i])
-      console.log("end element")
+      
+      currentLine.push(nextLine)
+      currentLine.push(currentLine[0])  
+      
   };
   return polyList;
 };
