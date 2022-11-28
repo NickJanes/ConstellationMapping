@@ -1,14 +1,14 @@
-var margin = {top: 20, right: 80, bottom: 30, left: 50},
-world_width = 700 - margin.left - margin.right,
-world_height = 475 - margin.top - margin.bottom;
+var world_margin = {top: 20, right: 80, bottom: 30, left: 50},
+world_width = 700 - world_margin.left - world_margin.right,
+world_height = 475 - world_margin.top - world_margin.bottom;
 
 var svg_world = d3.select("body")
   .append("svg")
-  .attr("width", world_width + margin.left + margin.right)
-  .attr("height", world_height + margin.top + margin.bottom)
+  .attr("width", world_width + world_margin.left + world_margin.right)
+  .attr("height", world_height + world_margin.top + world_margin.bottom)
 
 //======================================================================
-//world projection (Built with refrence from Mike Bostock) https://bl.ocks.org/mbostock/3682676
+//world projection (Built with reference from Mike Bostock) https://bl.ocks.org/mbostock/3682676
 //======================================================================
 var projection = d3.geoWinkel3()
     .scale(130)
@@ -44,7 +44,7 @@ for(k = 0; k < polygonLatLines.length; k++){
   geojsonLatLines.features.push({
     "type": "Feature",
     "geometry": polygonLatLines[k],
-    "properties": +k
+    "properties": {"id": +k} 
   })
   //console.log(geojsonLatLines.features[k])
 }
@@ -106,7 +106,7 @@ function buildPolygons(lineStrings){
       j = i+1
       
       //we only want to reverse every other array
-      if (j % 2 != 0)
+      if (j % 2 == 0)
         nextLine = polyList[j].coordinates.reverse();
       else
         nextLine = polyList[j].coordinates;
