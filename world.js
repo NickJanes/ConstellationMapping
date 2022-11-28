@@ -101,7 +101,7 @@ function buildPolygons(lineStrings){
   //set the lineStrings to new polygonList
   var polyList = [...lineStrings];
 
-  for(i = 0, j = i+1; i < lineStrings.length && i+1 < lineStrings.length; i++, j++){
+  for(i = 0, j = i+1; i < lineStrings.length && j < lineStrings.length; i++, j++){
       
       
       //we only want to reverse every other array
