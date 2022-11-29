@@ -33,7 +33,7 @@ var lines = graticule.lines()
 var lat_lines = lines.filter(function (l){
   return l.coordinates[0][1] == l.coordinates[1][1];
   })
-console.log(lat_lines.length)
+//console.log(lat_lines.length)
 //insert 0 lat line inbetween 10 and 20 degrees
 lat_lines.splice(9,0, lat_lines[0])
 lat_lines.splice(0, 1)
@@ -148,10 +148,14 @@ function buildPolygons(lineStrings){
         nextLine = polyList[j].coordinates;
       
       polyList[i].type = "Polygon"
-      console.log("begin new element")
+//      console.log("begin new element")
       polyList[i].coordinates.push(nextLine)
       polyList[i].coordinates.push(polyList[i].coordinates[0])  
-      console.log(polyList[i-1])
+//      console.log(polyLis t[i-1])
   };
   return polyList;
 };
+
+let updateWorldMap = (month)=> {
+    
+}
