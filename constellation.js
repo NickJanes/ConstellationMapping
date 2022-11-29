@@ -24,7 +24,7 @@ var const_svg = d3.select(".container")
     .style("margin-right", "100px")
     .style("background-color", "black")
 
-name = 'Ursa Minor'
+//name = 'Gemini'
 abrv = ''
 promises = [d3.csv("con_names.csv"), 
             d3.text("constellation connection.tsv"),
@@ -45,29 +45,27 @@ var yScale = d3.scaleLinear()
     .range([0, const_height]);
 
 Promise.all(promises).then(function(files) {
-//    console.log(files[0])
     files[0].map((row) => {
         if(row[' Constellation'] == name) {
             abrv = row[' Abbreviation']
         }
     })
     
-    var stars;
+    let stars;
     files[1].split("\r\n").map((row) => {
         row = row.split(" ");
         if(row[0] != abrv) {
             return
         }
-//        console.log(row);
+//        console.log(row.slice(3))
         stars = row.slice(3);
     })
-    
     
     files[2].map((row) => {
 //        console.log(typeof(row.id))
         for(var i = 0; i < stars.length; i++) {
             if(row['id'] == stars[i]) {
-                console.log(row);
+//                console.log(row);
                 stars[i] = {x: parseFloat(row['ra']), y: parseFloat(row['dec']), name: row['spect'], ra: row['ra'], dec: row['dec']}
             }
         }
@@ -85,7 +83,7 @@ Promise.all(promises).then(function(files) {
     d3.max(stars, (d) => { return d.y; })
     ]);
     
-    console.log(stars);
+//    console.log(stars);
     
     const dots = const_svg.selectAll(".dot")
         .data(stars)
@@ -98,7 +96,7 @@ Promise.all(promises).then(function(files) {
         .on("mouseover", tooly)
         .on("mousemove", tooly)
         .on("mouseleave", ()=>{
-            start_tooltip.attr("opacity", 0)
+            star_tooltip.style('opacity', 0)
         })
     
     for(var i = 0; i < stars.length; i += 2) {
@@ -112,3 +110,7 @@ Promise.all(promises).then(function(files) {
         .style("glow", "5px solid yellow");
     }
 })
+
+let updateConstVisualization = () => {
+    
+}

@@ -2,10 +2,13 @@ var world_margin = {top: 20, right: 80, bottom: 30, left: 50},
 world_width = 700 - world_margin.left - world_margin.right,
 world_height = 475 - world_margin.top - world_margin.bottom;
 
+
 var svg_world = d3.select("body")
   .append("svg")
   .attr("width", world_width + world_margin.left + world_margin.right)
   .attr("height", world_height + world_margin.top + world_margin.bottom)
+//    .style("float", "left")
+.style("display", "inline-block")
 
 //======================================================================
 //world projection (Built with reference from Mike Bostock) https://bl.ocks.org/mbostock/3682676
@@ -30,7 +33,7 @@ var lines = graticule.lines()
 var lat_lines = lines.filter(function (l){
   return l.coordinates[0][1] == l.coordinates[1][1];
   })
-console.log(lat_lines.length)
+//console.log(lat_lines.length)
 //insert 0 lat line inbetween 10 and 20 degrees
 lat_lines.splice(9,0, lat_lines[0])
 lat_lines.splice(0, 1)
@@ -145,10 +148,14 @@ function buildPolygons(lineStrings){
         nextLine = polyList[j].coordinates;
       
       polyList[i].type = "Polygon"
-      console.log("begin new element")
+//      console.log("begin new element")
       polyList[i].coordinates.push(nextLine)
       polyList[i].coordinates.push(polyList[i].coordinates[0])  
-      console.log(polyList[i-1])
+//      console.log(polyLis t[i-1])
   };
   return polyList;
 };
+
+let updateWorldMap = (month)=> {
+    
+}
