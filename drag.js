@@ -11,7 +11,7 @@ d3.csv("con_month_and_latitude.csv").then( function(data) {
     con_month_and_lat = data;
 //    console.log(con_month_and_lat);
     updateConstList("January");
-})
+});
 
 let updateConstList = (month) => {
 //    console.log(month);

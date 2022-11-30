@@ -13,6 +13,33 @@ var svg_world = d3.select("body")
 //======================================================================
 //world projection (Built with reference from Mike Bostock) https://bl.ocks.org/mbostock/3682676
 //======================================================================
+let updateWorldMap = (month)=> {
+    filteredData = con_month_and_lat.filter(function(row) {
+        return row['Month'] == month;
+    });   
+    heat = heat.fill(0.1)
+    filteredData.forEach(row => {
+        var north = parseInt(row['Northern latitude'])
+        var south = parseInt(row['Southern latitude'])
+        north = Math.round((90 - north) / 10)
+        south = Math.round((90 + south) / 10)
+        for(var i = north; i < south; i++) {
+            heat[i] += .05
+        }
+    })
+    for(var i = 0; i < 18; i++) {
+        var rect = d3.select("#world-" + i +" rect")
+        if(heat[i] > 0.1) {
+            rect.attr("fill", "red")
+            .style("opacity", heat[i])
+            .attr
+        } else {
+            rect.attr("fill", "lightgray")
+            .style("opacity", 0.1)
+        }
+    }
+}
+
 var heat = new Array(18).fill(0.1);
 
 var projection = d3.geoWinkel3()
@@ -115,27 +142,30 @@ d3.json("land-50m.json").then(function(world){
       .attr("opacity", 0.1)
       .on("mouseover", function () { 
         if(d3.select(this).style("opacity") < 0.8){
-          d3.select(this).style("opacity", 0.5)
+          d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))] + .1)
         }else{
           return;
         }
       })
       .on("mouseout", function(){
         if(d3.select(this).style("opacity") < 0.8){
-          d3.select(this).style("opacity", 0.1)
+          d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))])
         }else{
           return;
         }
       })
       .on("click", function(){
-          svg_world.selectAll("rect")
-            .style("opacity", 0.1)
+        var i = 0;
+          svg_world.selectAll("rect").each(function(d) {
+              d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))])
+          });
+//            .style("opacity", (data) => {console.log(data); return 0})
           d3.select(this).style("opacity", 0.8)
           
       });
 
   }  
-}); 
+})
 //======================================================================
 function buildPolygons(lineStrings){
   //set the lineStrings to new polygonList
@@ -157,30 +187,3 @@ function buildPolygons(lineStrings){
   };
   return polyList;
 };
-
-let updateWorldMap = (month)=> {
-    filteredData = con_month_and_lat.filter(function(row) {
-        return row['Month'] == month;
-    });   
-    heat = heat.fill(0.1)
-    filteredData.forEach(row => {
-        var north = parseInt(row['Northern latitude'])
-        var south = parseInt(row['Southern latitude'])
-        north = Math.round((90 - north) / 10)
-        south = Math.round((90 + south) / 10)
-        for(var i = north; i < south; i++) {
-            heat[i] += .05
-        }
-    })
-    for(var i = 0; i < 18; i++) {
-        var rect = d3.select("#world-" + i +" rect")
-        if(heat[i] > 0.1) {
-            rect.attr("fill", "red")
-            .style("opacity", heat[i])
-            .attr
-        } else {
-            rect.attr("fill", "lightgray")
-            .style("opacity", 0.1)
-        }
-    }
-}
