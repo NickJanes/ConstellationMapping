@@ -13,6 +13,8 @@ var svg_world = d3.select("body")
 //======================================================================
 //world projection (Built with reference from Mike Bostock) https://bl.ocks.org/mbostock/3682676
 //======================================================================
+var heat = new Array(18).fill(0.1);
+
 var projection = d3.geoWinkel3()
     .scale(130)
     .translate([world_width / 2 + 70, world_height / 2])
@@ -41,7 +43,7 @@ lat_lines.splice(0, 1)
 //construct polygons from coordinates and remove last element
 var polygonLatLines = buildPolygons(lat_lines)
 //console.log(lat_lines)
-polygonLatLines.splice(16, 1)
+polygonLatLines.splice(18, 1)
 //console.log(polygonLatLines)
 var geojsonLatLines = {
   "type":"FeatureCollection",
@@ -97,11 +99,11 @@ d3.json("land-50m.json").then(function(world){
       .attr("d", path);
   
   //draw the selectable area
-  for(var itor = 0, offset = 40; itor < 16; itor++, offset = offset+20)
+  for(var itor = 0, offset = 40; itor < 18; itor++, offset = offset+20)
   {
     svg_world.append("g")
       .attr("class", "latitude area")
-      .attr("id", itor)
+      .attr("id", "world-" + itor)
       .attr("transform", "translate(0,"+offset +")")
       .append("rect")
       .attr("height", "20")
@@ -157,5 +159,28 @@ function buildPolygons(lineStrings){
 };
 
 let updateWorldMap = (month)=> {
-    
+    filteredData = con_month_and_lat.filter(function(row) {
+        return row['Month'] == month;
+    });   
+    heat = heat.fill(0.1)
+    filteredData.forEach(row => {
+        var north = parseInt(row['Northern latitude'])
+        var south = parseInt(row['Southern latitude'])
+        north = Math.round((90 - north) / 10)
+        south = Math.round((90 + south) / 10)
+        for(var i = north; i < south; i++) {
+            heat[i] += .05
+        }
+    })
+    for(var i = 0; i < 18; i++) {
+        var rect = d3.select("#world-" + i +" rect")
+        if(heat[i] > 0.1) {
+            rect.attr("fill", "red")
+            .style("opacity", heat[i])
+            .attr
+        } else {
+            rect.attr("fill", "lightgray")
+            .style("opacity", 0.1)
+        }
+    }
 }

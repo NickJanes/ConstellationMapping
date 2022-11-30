@@ -6,10 +6,10 @@ var months_of_year= ["January","February","March","April","May","June","July",
 
 var svg = d3.select('body')
     .append('svg')
-    .attr('width', 500)
+    .attr('width', 450)
     .attr('height', 100)
     .append('g')
-    .attr('transform', 'translate(140, 50)');
+    .attr('transform', 'translate(80, 50)');
 
 var sliderStep = d3
     .sliderHorizontal()
