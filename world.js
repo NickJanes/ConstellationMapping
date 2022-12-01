@@ -111,12 +111,12 @@ svg_world.append("use")
     .attr("class", "fill")
     .attr("xlink:href", "#sphere");
 
-/*svg_world.append("path")
+svg_world.append("path")
     .datum(graticule)
     .attr("class", "graticule")
     .attr("d", path)
     ;
-*/
+
 d3.json("land-50m.json").then(function(world){
   
   svg_world.insert("path", ".graticule")
