@@ -4,9 +4,13 @@
         <meta charset="utf-8">
         <title>Light In The Dark</title>
         
-        <h1 style = "text-align:center; color:black">[Title - Starscape?] </h1>
-        <h3 style = "text-align:center; color:black">[Description - A Mapping of the Constellations and Where to Find Them] </h3>
-        <h4 style = "text-align:center; color:black">[insert insights later]</h4>
+        <h1 style = "text-align:center; color:black">Starscape</h1>
+        <h3 style = "text-align:center; color:black">A Mapping of the Constellations and Where to Best See Them </h3>
+        <h4 style = "text-align:center; font-weight:normal">
+            Constellations were once vital for navigation, agriculture, and the perception of time.<br>
+            Though we do not rely on them as much anymore, stargazing remains as a beloved pastime for many across the world.<br>
+            This visualization depicts each constellation's best viewability by month and latitude.<br>
+        </h4>
         
         <!--for columns, to be combined with stylesheet.css -->
         <link rel="stylesheet" type="text/css" href="style.css">
@@ -20,15 +24,23 @@
         
         <!--imports for slider -->
         <script src="https://unpkg.com/d3-simple-slider"></script>
+        
     </head>
     <body>
+        
         <div class="container"></div>
         <!-- script files  -->
         <script type="text/javascript" src="world.js"></script>
-        <script type="text/javascript" src="constellation.js"></script>
         <script type="text/javascript" src="slider.js"></script>
+        <!-- html divs for drop-down menu -->
+        <!-- Initialize a dropdown button -->
+        <select id="selectButton" size=11></select>
+        <!-- Create a div where the graph will take place -->
+        <div id="my_dataviz"></div>
+        <script type="text/javascript" src="drag.js"></script>
+        <script type="text/javascript" src="constellation.js"></script>
         
-        <div class="credits" style = "text-align:center">
+        <div class="credits" style = "text-align:center; background-color: lightgray;">
             <h4>Created By:</h4>
             <p>
                 Jorel Huerto (jhuerto@ucsc.edu)<br/>
@@ -41,66 +53,65 @@
                 GitHub Link: <a href="https://github.com/NickJanes/ConstellationMapping" target = "_blank">Constellation Mapping</a>
             </p>
             <p>
-                Designed for: CSE 163: Data Programming for Visualization, Fall 2022
+                Designed for CSE 163: Data Programming for Visualization, Fall 2022
             </p>
-        </div>
         
-        <div class="row">
-            
-          <div class="column">
-            <h2>Files</h2>
-            <ul>
-                <p>
-                    index.html<br>
-                    constellation.js<br>
-                    world.js<br>
-                    slider.js<br>
-                    ___.css [will combine both files later]<br>
-                    hygdata_v3.csv<br>
-                    constellation connection.tsv<br>
-                    con_names.csv<br>
-                    con_month_and_latitude.csv<br>
-                    88-constellations.csv<br>
-                    land-50m.json<br>
-                <p>
-            </ul>
-          </div>
-            
-          <div class="column">
-            <h2>Data Sources</h2>
-            <ul>
-                <p>
-                    <a href="https://github.com/astronexus/HYG-Database" target = "_blank">HYG Database</a><br>
-                    <a href="https://github.com/Stellarium/stellarium" target = "_blank">Stellarium Database</a><br>
-                    <a href="https://www.constellation-guide.com/seasonal-constellations" target = "_blank">Seasonal Constellations [source?]</a><br>
-                    <a href="https://www.datastro.eu/explore/dataset/88-constellations/table/?disjunctive.season_saison&disjunctive.iau_code&disjunctive.dec_declinaison&disjunctive.test&disjunctive.constellation_area_in_of_the_celestial_sphere_etendue_de_la_constellation_en_de_la_sph&disjunctive.constellation_area_in_of_the_celestial_sphere_etendue_de_la_constellation_en_de_la_sphere_celeste&disjunctive.constellation_zone_celestial_equator_zone_de_la_constellation_equateur_celeste&disjunctive.constellation_zone_milky_way_zone_de_la_constellation_voie_lactee&disjunctive.quad_repere_de_l_hemisphere_et_du_quadrant&disjunctive.name_origin_origine_de_l_apellation&sort=iau_code" target = "_blank">Datastro</a><br>
-                <p>
-            </ul>    
-          </div>
-            
-          <div class="column">
-            <h2>Relevant Visualizations</h2>
-            <ul>
-                <p>
-                    <a href="https://skyandtelescope.org/interactive-sky-chart/" target = "_blank">Interactive Sky Telescope</a><br>
-                    <a href="https://www.stelvision.com/astro/sky-map/" target = "_blank">Today's Sky Map</a><br>
-                    <a href="https://figuresinthesky.visualcinnamon.com/" target = "_blank">Figures in the Sky</a><br>
-                <p>
-            </ul>
-          </div>
-            
-          <div class="column">
-            <h2>Code Sources</h2>
-            <ul>
-                <p>
-                    <a href="https://bl.ocks.org/johnwalley/e1d256b81e51da68f7feb632a53c3518#index.html" target = "_blank">Slider</a><br>
-                    <a href="https://www.w3schools.com/howto/howto_css_four_columns.asp" target = "_blank">Columns</a><br>
-                    
-                <p>
-            </ul> 
-          </div>
-        
-        </div>
-        
+            <div class="row" style = "background-color: lightgray">
+
+              <div class="column">
+                <h2>Files</h2>
+                <ul>
+                    <p>
+                        index.html<br>
+                        constellation.js<br>
+                        world.js<br>
+                        slider.js<br>
+                        drag.js<br>
+                        style.css<br>
+                        hygdata_v3.csv<br>
+                        constellation connection.tsv<br>
+                        con_names.csv<br>
+                        con_month_and_latitude.csv<br>
+                        88-constellations.csv<br>
+                        land-50m.json<br>
+                    <p>
+                </ul>
+              </div>
+
+              <div class="column">
+                <h2>Data Sources</h2>
+                <ul>
+                    <p>
+                        <a href="https://github.com/astronexus/HYG-Database" target = "_blank">HYG Database</a><br>
+                        <a href="https://github.com/Stellarium/stellarium" target = "_blank">Stellarium Database</a><br>
+                        <a href="https://www.constellation-guide.com/seasonal-constellations" target = "_blank">Seasonal Constellations</a><br>
+                        <a href="https://www.datastro.eu/explore/dataset/88-constellations/table/?disjunctive.season_saison&disjunctive.iau_code&disjunctive.dec_declinaison&disjunctive.test&disjunctive.constellation_area_in_of_the_celestial_sphere_etendue_de_la_constellation_en_de_la_sph&disjunctive.constellation_area_in_of_the_celestial_sphere_etendue_de_la_constellation_en_de_la_sphere_celeste&disjunctive.constellation_zone_celestial_equator_zone_de_la_constellation_equateur_celeste&disjunctive.constellation_zone_milky_way_zone_de_la_constellation_voie_lactee&disjunctive.quad_repere_de_l_hemisphere_et_du_quadrant&disjunctive.name_origin_origine_de_l_apellation&sort=iau_code" target = "_blank">Datastro</a><br>
+                    <p>
+                </ul>    
+              </div>
+
+              <div class="column">
+                <h2>Relevant Visualizations</h2>
+                <ul>
+                    <p>
+                        <a href="https://skyandtelescope.org/interactive-sky-chart/" target = "_blank">Interactive Sky Telescope</a><br>
+                        <a href="https://www.stelvision.com/astro/sky-map/" target = "_blank">Today's Sky Map</a><br>
+                        <a href="https://figuresinthesky.visualcinnamon.com/" target = "_blank">Figures in the Sky</a><br>
+                    <p>
+                </ul>
+              </div>
+
+              <div class="column">
+                <h2>Code Sources</h2>
+                <ul>
+                    <p>
+                        <a href="https://bl.ocks.org/johnwalley/e1d256b81e51da68f7feb632a53c3518#index.html" target = "_blank">Slider</a><br>
+                        <a href="https://www.w3schools.com/howto/howto_css_four_columns.asp" target = "_blank">Columns</a><br>
+                        <a href="https://bl.ocks.org/mbostock/3682676" target = "_blank">World Projection</a><br>
+                    <p>
+                </ul> 
+              </div>
+            </div>
+        </div>    
     </body>
 </html>
