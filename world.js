@@ -32,6 +32,7 @@ lat_lines.splice(0, 1)
 
 //construct polygons from coordinates and remove last element
 var polygonLatLines = buildPolygons(lat_lines)
+//console.log(lat_lines)
 polygonLatLines.splice(16, 1)
 //console.log(polygonLatLines)
 var geojsonLatLines = {
