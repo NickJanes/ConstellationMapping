@@ -13,6 +13,9 @@ var star_tooltip = d3.select('body').style('background-color', 'white')
     .style("text-align", "center")
     .style("position", "absolute")
     .style("pointer-events", "none")
+    .style("display", "inline-block")
+    .style("margin-left", "0 auto")
+    .style("margin-right", "0 auto")
 
 
 var const_svg = d3.select(".container")

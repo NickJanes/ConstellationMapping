@@ -22,15 +22,26 @@ let updateConstList = (month) => {
     // add the options to the button
     d3.select("#selectButton")
       .selectAll('option')
+        .style("border", "none")
         .remove()
     
     d3.select("#selectButton")
         .selectAll('option')
         .data(filteredData)
-      .enter()
+       .enter()
     	.append('option')
       .text(function (d) { return d.Constellation; }) // text showed in the menu
       .attr("value", function (d) { return d.Constellation; }) // corresponding value returned by the button
+
+      //.selectButton {
+      //border: white;
+      //padding: 14px 28px;
+      //color: black;
+      //}
+
+      //.selectButton:hover {
+      //background: #e7e7e7;
+      //}
 
     // When the button is changed, run the updateChart function
 //    d3.select("#selectButton").on("change", function(event,d) {
