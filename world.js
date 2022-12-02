@@ -13,6 +13,7 @@ var svg_world = d3.select("body")
 //======================================================================
 //world projection (Built with reference from Mike Bostock) https://bl.ocks.org/mbostock/3682676
 //======================================================================
+//heatmap built by nick janes =========================================
 let updateWorldMap = (month)=> {
     filteredData = con_month_and_lat.filter(function(row) {
         return row['Month'] == month;
@@ -41,6 +42,7 @@ let updateWorldMap = (month)=> {
 }
 
 var heat = new Array(18).fill(0.1);
+//nick janes end ======================================================
 
 var projection = d3.geoWinkel3()
     .scale(130)
@@ -57,6 +59,11 @@ var path = d3.geoPath()
 
 var graticule = d3.geoGraticule()
                   .precision([10]);
+
+//==========================================================
+// This section is deprecated may update in the future
+//==========================================================
+/*
 var lines = graticule.lines()                 
 //console.log(lines)
 var lat_lines = lines.filter(function (l){
@@ -86,18 +93,11 @@ for(k = 0; k < polygonLatLines.length; k++){
   //console.log(geojsonLatLines.features[k])
 }
 //console.log(geojsonLatLines)
-var mouseover = function() {
-  d3.select(this)
-      .style("opacity", 0.5)
-      .style("fill", "lightgray")
-  }
-
-var mouseout = function() {
-d3.select(this)
-  .style("opacity", 1)
-  .style("fill", "black")
-}
-
+*/
+//==========================================================
+// end of deprecated section
+//==========================================================
+//draw sphere begin =============================
 svg_world.append("defs").append("path")
     .datum({type: "Sphere"})
     .attr("id", "sphere")
@@ -110,13 +110,15 @@ svg_world.append("use")
 svg_world.append("use")
     .attr("class", "fill")
     .attr("xlink:href", "#sphere");
-
+//draw sphere end =============================
+//draw the gridlines
+/*
 svg_world.append("path")
     .datum(graticule)
     .attr("class", "graticule")
     .attr("d", path)
     ;
-
+*/
 d3.json("land-50m.json").then(function(world){
   
   svg_world.insert("path", ".graticule")
@@ -125,33 +127,38 @@ d3.json("land-50m.json").then(function(world){
       .attr("d", path);
   
   //draw the selectable area
-  for(var itor = 0, offset = 40; itor < 18; itor++, offset = offset+20)
+  var areaScale = [52, 52, 32, 23, 19, 16, 15, 13, 13, 14, 14, 14, 16, 19, 23, 32, 52, 52]
+  console.log(areaScale.length)
+  for(var itor = 0, offset = 2; itor < 18; itor++, offset = offset+areaScale[itor-1])
   {
     svg_world.append("g")
       .attr("class", "latitude area")
       .attr("id", "world-" + itor)
       .attr("transform", "translate(0,"+offset +")")
       .append("rect")
-      .attr("height", "20")
+      .attr("height", areaScale[itor])
       .attr("x", 49)
       .attr("width", "472")
-      .attr("rx", "5")
+      .attr("rx", "1")
       .attr("fill", "lightgray")
-      
+      .attr("stroke", "none")
+      .attr("stroke-width", "2px")
       .attr("opacity", 0.1)
       .on("mouseover", function () { 
         if(d3.select(this).style("opacity") < 0.8){
+          d3.select(this).style("stroke", "black")
           d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))] + .1)
-        }else{
-          return;
         }
+        if(d3.select(this).style("stroke") == "black")
+          d3.select(this).style("stroke", "black")
       })
       .on("mouseout", function(){
         if(d3.select(this).style("opacity") < 0.8){
+          d3.select(this).style("stroke", "none")
           d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))])
-        }else{
-          return;
         }
+        if(d3.select(this).style("stroke") == "black")
+          d3.select(this).style("stroke", "black")
       })
       .on("click", function(){
         var i = 0;
@@ -160,12 +167,12 @@ d3.json("land-50m.json").then(function(world){
           });
 //            .style("opacity", (data) => {console.log(data); return 0})
           d3.select(this).style("opacity", 0.8)
-          
+          d3.select(this).style("stroke", "none")
       });
-
   }  
 })
 //======================================================================
+//deprecated function
 function buildPolygons(lineStrings){
   //set the lineStrings to new polygonList
   var polyList = lineStrings;
