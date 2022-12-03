@@ -143,7 +143,7 @@ d3.json("land-50m.json").then(function(world){
       .attr("fill", "lightgray")
       .attr("stroke", "none")
       .attr("stroke-width", "2px")
-      .attr("opacity", 0.5)
+      .attr("opacity", 0.3)
       .on("mouseover", function () { 
         if(d3.select(this).style("opacity") < 0.95){
           d3.select(this).style("stroke", "black")
@@ -151,20 +151,20 @@ d3.json("land-50m.json").then(function(world){
         }
       })
       .on("mouseout", function(){
-        if(d3.select(this).style("opacity") < 0.8){
+        if(d3.select(this).style("opacity") < 0.95){
           d3.select(this).style("stroke", "none")
-          d3.select(this).style("opacity", 0.5)
+          d3.select(this).style("opacity", 0.3)
         }
         if(d3.select(this).style("stroke") == "black")
           d3.select(this).style("stroke", "none")
       })
       .on("click", function(){
           svg_world.selectAll("rect").each(function() {
-              d3.select(this).style("opacity", 0.5)
+              d3.select(this).style("opacity", 0.3)
           });
 //            .style("opacity", (data) => {console.log(data); return 0})
           d3.select(this).style("stroke", "black")
-          d3.select(this).style("opacity", 0.9)
+          d3.select(this).style("opacity", 0.95)
       })
   }  
 })
