@@ -10,15 +10,52 @@ var svg_world = d3.select("body")
 //    .style("float", "left")
 .style("display", "inline-block")
 
+var color = d3.scaleThreshold()
+    .domain([1, 2, 3, 4, 5, 6, 7, 8])
+    .range(d3.schemeReds[9]);
+
+//Draw legend for the color values
+var x = d3.scaleSqrt()
+    .domain([0, 10])
+    .rangeRound([400, 800]);
+var legend = svg_world.selectAll("rect")
+    .data(color.range().map(function (d) {
+        d = color.invertExtent(d);
+        if (d[0] == null) d[0] = x.domain()[0];
+        if (d[1] == null) d[1] = x.domain()[1];
+        return d;
+    }))
+    .enter().append("rect")
+    .attr("height", 8)
+    .attr("x", function (d) { return x(d[0]); })
+    .attr("width", function (d) { return x(d[1]) - x(d[0]); })
+    .attr("fill", function (d) { return color(d[0]); });
+
+
+svg_world.append("text")
+    .attr("class", "caption")
+    .attr("x", x.range()[0])
+    .attr("y", 0)
+    .attr("fill", "#000")
+    .attr("text-anchor", "start")
+    .attr("font-weight", "bold")
+    .text("Population per square mile");
+
+svg_world.call(d3.axisBottom(x)
+    .tickSize(13)
+    .tickValues(color.domain()))
+    .select(".domain")
+    .remove();
 //======================================================================
 //world projection (Built with reference from Mike Bostock) https://bl.ocks.org/mbostock/3682676
 //======================================================================
-//heatmap built by nick janes =========================================
+//heatmap built by nick janes edited by jorel huerto =========================================
 let updateWorldMap = (month)=> {
     filteredData = con_month_and_lat.filter(function(row) {
         return row['Month'] == month;
     });   
     heat = heat.fill(0.1)
+    overlap = overlap.fill(0)
     filteredData.forEach(row => {
         var north = parseInt(row['Northern latitude'])
         var south = parseInt(row['Southern latitude'])
@@ -26,23 +63,18 @@ let updateWorldMap = (month)=> {
         south = Math.round((90 + south) / 10)
         for(var i = north; i < south; i++) {
             heat[i] += .05
+            overlap[i] += 1
         }
-    })
+    });
+    //console.log(overlap)
     for(var i = 0; i < 18; i++) {
         var rect = d3.select("#world-" + i +" rect")
-        if(heat[i] > 0.1) {
-            rect.attr("fill", "red")
-            .style("opacity", heat[i])
-            .attr
-        } else {
-            rect.attr("fill", "lightgray")
-            .style("opacity", 0.1)
-        }
+        rect.attr("fill", color(overlap[i])) 
     }
 }
-
+var overlap = new Array(18).fill(0)
 var heat = new Array(18).fill(0.1);
-//nick janes end ======================================================
+//nick janes and jorel huerto end ======================================================
 
 var projection = d3.geoWinkel3()
     .scale(130)
@@ -119,6 +151,10 @@ svg_world.append("path")
     .attr("d", path)
     ;
 */
+
+var latFilter = -1;
+var selectedID;
+
 d3.json("land-50m.json").then(function(world){
   
   svg_world.insert("path", ".graticule")
@@ -128,9 +164,10 @@ d3.json("land-50m.json").then(function(world){
   
   //draw the selectable area
   var areaScale = [52, 52, 32, 23, 19, 16, 15, 13, 13, 14, 14, 14, 16, 19, 23, 32, 52, 52]
-  console.log(areaScale.length)
+  //console.log(areaScale.length)
   for(var itor = 0, offset = 2; itor < 18; itor++, offset = offset+areaScale[itor-1])
   {
+      
     svg_world.append("g")
       .attr("class", "latitude area")
       .attr("id", "world-" + itor)
@@ -143,36 +180,50 @@ d3.json("land-50m.json").then(function(world){
       .attr("fill", "lightgray")
       .attr("stroke", "none")
       .attr("stroke-width", "2px")
-      .attr("opacity", 0.1)
+      .attr("opacity", 0.3)
       .on("mouseover", function () { 
-        if(d3.select(this).style("opacity") < 0.8){
+        if(d3.select(this).style("opacity") < 0.95){
           d3.select(this).style("stroke", "black")
-          d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))] + .1)
+          d3.select(this).style("opacity", 0.5)
         }
-        if(d3.select(this).style("stroke") == "black")
-          d3.select(this).style("stroke", "black")
       })
       .on("mouseout", function(){
-        if(d3.select(this).style("opacity") < 0.8){
+        if(d3.select(this).style("opacity") < 0.95){
           d3.select(this).style("stroke", "none")
-          d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))])
+          d3.select(this).style("opacity", 0.3)
         }
         if(d3.select(this).style("stroke") == "black")
-          d3.select(this).style("stroke", "black")
+          d3.select(this).style("stroke", "none")
       })
       .on("click", function(){
-        var i = 0;
-          svg_world.selectAll("rect").each(function(d) {
-              d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))])
+          svg_world.selectAll("rect").each(function() {
+              d3.select(this).style("opacity", 0.3)
           });
 //            .style("opacity", (data) => {console.log(data); return 0})
-          d3.select(this).style("opacity", 0.8)
-          d3.select(this).style("stroke", "none")
-      });
+          d3.select(this).style("stroke", "black")
+          d3.select(this).style("opacity", 0.95)
+          
+          
+          var counter = 0;
+          svg_world.selectAll("rect").each(function() {
+              if (d3.select(this).style("stroke") == "black"){
+                  selectedID = [counter, counter+1];
+                  console.log('sID', selectedID);
+              };
+              counter = counter+1;
+          });
+        
+          latFilter = 2;
+          updateConstList(defaultMonth);
+        
+      })
+      updateConstList("January")
+      updateWorldMap(months_of_year[0])
   }  
 })
 //======================================================================
 //deprecated function
+/*
 function buildPolygons(lineStrings){
   //set the lineStrings to new polygonList
   var polyList = lineStrings;
@@ -195,3 +246,4 @@ function buildPolygons(lineStrings){
   };
   return polyList;
 };
+*/
