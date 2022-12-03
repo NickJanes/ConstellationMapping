@@ -11,17 +11,18 @@ var svg_world = d3.select("body")
 .style("display", "inline-block")
 
 var color = d3.scaleThreshold()
-    .domain([0, 10])
+    .domain([1, 2, 3, 4, 5, 6, 7, 8])
     .range(d3.schemeReds[9]);
 //======================================================================
 //world projection (Built with reference from Mike Bostock) https://bl.ocks.org/mbostock/3682676
 //======================================================================
-//heatmap built by nick janes =========================================
+//heatmap built by nick janes edited by jorel huerto =========================================
 let updateWorldMap = (month)=> {
     filteredData = con_month_and_lat.filter(function(row) {
         return row['Month'] == month;
     });   
     heat = heat.fill(0.1)
+    overlap = overlap.fill(0)
     filteredData.forEach(row => {
         var north = parseInt(row['Northern latitude'])
         var south = parseInt(row['Southern latitude'])
@@ -29,22 +30,19 @@ let updateWorldMap = (month)=> {
         south = Math.round((90 + south) / 10)
         for(var i = north; i < south; i++) {
             heat[i] += .05
+            overlap[i] += 1
         }
-    })
+    });
+    console.log(overlap)
     for(var i = 0; i < 18; i++) {
         var rect = d3.select("#world-" + i +" rect")
-        if(heat[i] > 0.1) {
-            rect.attr("fill", "red")
-            .style("opacity", heat[i])
-        } else {
-            rect.attr("fill", "lightgray")
-            .style("opacity", 0.1)
-        }
+        console.log(color(i))
+        rect.attr("fill", color(overlap[i])) 
     }
 }
-
+var overlap = new Array(18).fill(0)
 var heat = new Array(18).fill(0.1);
-//nick janes end ======================================================
+//nick janes and jorel huerto end ======================================================
 
 var projection = d3.geoWinkel3()
     .scale(130)
@@ -145,28 +143,28 @@ d3.json("land-50m.json").then(function(world){
       .attr("fill", "lightgray")
       .attr("stroke", "none")
       .attr("stroke-width", "2px")
-      .attr("opacity", 0.1)
+      .attr("opacity", 0.5)
       .on("mouseover", function () { 
-        if(d3.select(this).style("opacity") < 0.8){
+        if(d3.select(this).style("opacity") < 0.95){
           d3.select(this).style("stroke", "black")
-          d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))] + .1)
+          d3.select(this).style("opacity", 0.5)
         }
       })
       .on("mouseout", function(){
         if(d3.select(this).style("opacity") < 0.8){
           d3.select(this).style("stroke", "none")
-          d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))])
+          d3.select(this).style("opacity", 0.5)
         }
         if(d3.select(this).style("stroke") == "black")
           d3.select(this).style("stroke", "none")
       })
       .on("click", function(){
           svg_world.selectAll("rect").each(function() {
-              d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))])
+              d3.select(this).style("opacity", 0.5)
           });
 //            .style("opacity", (data) => {console.log(data); return 0})
           d3.select(this).style("stroke", "black")
-          d3.select(this).style("opacity", 0.8)
+          d3.select(this).style("opacity", 0.9)
       })
   }  
 })
