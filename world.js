@@ -121,6 +121,7 @@ svg_world.append("path")
 
 var latFilter = -1;
 var selectedID;
+let con_month_and_lat = [];
 
 d3.json("land-50m.json").then(function(world){
   

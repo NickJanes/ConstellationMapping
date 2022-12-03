@@ -5,13 +5,14 @@ margin = {top: 10, right: 100, bottom: 30, left: 30},
     width = 460 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
-let con_month_and_lat = []
 //Read the data
 d3.csv("con_month_and_latitude.csv").then( function(data) {
     con_month_and_lat = data;
 //    console.log(con_month_and_lat);
     updateConstList("January");
 });
+
+var latArr = [];
 
 let updateConstList = (month) => {
 //    console.log(month);
@@ -35,38 +36,23 @@ let updateConstList = (month) => {
             }
             else if (latFilter == 2){
                 
-                filteredData = con_month_and_lat.filter(function(row) {
-                    return row['Month'] == defaultMonth;
-                });
-                
-                var lat = [];
                 var visibleConst = [];
                 
-                filteredData.forEach(row => {
-                    var north = parseInt(row['Northern latitude'])
-                    var south = parseInt(row['Southern latitude'])
-                    north = Math.round((90 - north) / 10)
-                    south = Math.round((90 + south) / 10)
-                    lat.push([north, south]);
-                });
+                var north = parseInt(d["Northern latitude"]);
+                var south = parseInt(d["Southern latitude"]);
+                north = Math.round((90 - north) / 10)
+                south = Math.round((90 + south) / 10)
+                latArr = [north, south];
                 
-                console.log('lat boxes', lat);
-                console.log('sID', selectedID);
-                
-                for (let index = 0; index < lat.length; index++) {
-                    if (lat[index][0] <= selectedID[0] && selectedID[1] <= lat[index][1]){
-                        //console.log(filteredData[index].Constellation);
-                        //return filteredData[index].Constellation;
-                        visibleConst.push(filteredData[index].Constellation);
-                    }
-                } 
-                console.log('vc', visibleConst);
-                //return visibleConst;
+                if (latArr[0] <= selectedID[0] && selectedID[1] <= latArr[1]){
+                        return d.Constellation;
+                };   
             }
-        }) // text showed in the menu
+        })
     
         .attr("value", function (d) {
             d.Constellation;
+            //console.log(d.Constellation);
         }) // corresponding value returned by the button
 
     // When the button is changed, run the updateChart function
