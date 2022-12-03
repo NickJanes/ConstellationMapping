@@ -118,6 +118,10 @@ svg_world.append("path")
     .attr("d", path)
     ;
 */
+
+var latFilter = -1;
+var selectedID;
+
 d3.json("land-50m.json").then(function(world){
   
   svg_world.insert("path", ".graticule")
@@ -130,6 +134,7 @@ d3.json("land-50m.json").then(function(world){
   //console.log(areaScale.length)
   for(var itor = 0, offset = 2; itor < 18; itor++, offset = offset+areaScale[itor-1])
   {
+      
     svg_world.append("g")
       .attr("class", "latitude area")
       .attr("id", "world-" + itor)
@@ -164,6 +169,20 @@ d3.json("land-50m.json").then(function(world){
 //            .style("opacity", (data) => {console.log(data); return 0})
           d3.select(this).style("stroke", "black")
           d3.select(this).style("opacity", 0.95)
+          
+          
+          var counter = 0;
+          svg_world.selectAll("rect").each(function() {
+              if (d3.select(this).style("stroke") == "black"){
+                  selectedID = [counter, counter+1];
+                  console.log('sID', selectedID);
+              };
+              counter = counter+1;
+          });
+        
+          latFilter = 2;
+          updateConstList(defaultMonth);
+        
       })
       updateWorldMap(months_of_year[1])
   }  
