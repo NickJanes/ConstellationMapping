@@ -10,6 +10,9 @@ var svg_world = d3.select("body")
 //    .style("float", "left")
 .style("display", "inline-block")
 
+var color = d3.scaleThreshold()
+    .domain([0, 10])
+    .range(d3.schemeReds[9]);
 //======================================================================
 //world projection (Built with reference from Mike Bostock) https://bl.ocks.org/mbostock/3682676
 //======================================================================
@@ -33,7 +36,6 @@ let updateWorldMap = (month)=> {
         if(heat[i] > 0.1) {
             rect.attr("fill", "red")
             .style("opacity", heat[i])
-            .attr
         } else {
             rect.attr("fill", "lightgray")
             .style("opacity", 0.1)
@@ -128,7 +130,7 @@ d3.json("land-50m.json").then(function(world){
   
   //draw the selectable area
   var areaScale = [52, 52, 32, 23, 19, 16, 15, 13, 13, 14, 14, 14, 16, 19, 23, 32, 52, 52]
-  console.log(areaScale.length)
+  //console.log(areaScale.length)
   for(var itor = 0, offset = 2; itor < 18; itor++, offset = offset+areaScale[itor-1])
   {
     svg_world.append("g")
@@ -149,8 +151,6 @@ d3.json("land-50m.json").then(function(world){
           d3.select(this).style("stroke", "black")
           d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))] + .1)
         }
-        if(d3.select(this).style("stroke") == "black")
-          d3.select(this).style("stroke", "black")
       })
       .on("mouseout", function(){
         if(d3.select(this).style("opacity") < 0.8){
@@ -158,17 +158,16 @@ d3.json("land-50m.json").then(function(world){
           d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))])
         }
         if(d3.select(this).style("stroke") == "black")
-          d3.select(this).style("stroke", "black")
+          d3.select(this).style("stroke", "none")
       })
       .on("click", function(){
-        var i = 0;
-          svg_world.selectAll("rect").each(function(d) {
+          svg_world.selectAll("rect").each(function() {
               d3.select(this).style("opacity", heat[parseInt(this.parentNode.id.slice(6))])
           });
 //            .style("opacity", (data) => {console.log(data); return 0})
+          d3.select(this).style("stroke", "black")
           d3.select(this).style("opacity", 0.8)
-          d3.select(this).style("stroke", "none")
-      });
+      })
   }  
 })
 //======================================================================
