@@ -12,10 +12,10 @@
             This visualization depicts each constellation's best viewability by month and latitude.<br>
         </h4>
         
-        <!--for columns, to be combined with stylesheet.css -->
         <link rel="stylesheet" type="text/css" href="style.css">
         
         <script src="https://d3js.org/d3.v7.min.js"></script>
+        
         <!--imports for geo projections -->
         <script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script>
         <script src="https://cdn.jsdelivr.net/npm/d3-geo@3"></script>
@@ -29,9 +29,11 @@
     <body>
         
         <div class="container"></div>
+        <div id="slider"></div>
+        
         <!-- script files  -->
-        <script type="text/javascript" src="world.js"></script>
         <script type="text/javascript" src="slider.js"></script>
+        <script type="text/javascript" src="world.js"></script>
         <!-- html divs for drop-down menu -->
         <!-- Initialize a dropdown button -->
         <select id="selectButton" size=11></select>
@@ -39,6 +41,9 @@
         <div id="my_dataviz"></div>
         <script type="text/javascript" src="drag.js"></script>
         <script type="text/javascript" src="constellation.js"></script>
+        
+        <!-- PNGs from Stellarium/Sea Sky as backup -->
+        <!--<script type="text/javascript" src="image.js"></script>-->
         
         <div class="credits" style = "text-align:center; background-color: lightgray;">
             <h4>Created By:</h4>
