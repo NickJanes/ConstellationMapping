@@ -184,7 +184,8 @@ d3.json("land-50m.json").then(function(world){
           updateConstList(defaultMonth);
         
       })
-      updateWorldMap(months_of_year[1])
+      updateConstList("January")
+      updateWorldMap(months_of_year[0])
   }  
 })
 //======================================================================
