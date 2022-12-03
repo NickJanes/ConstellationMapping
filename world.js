@@ -33,10 +33,9 @@ let updateWorldMap = (month)=> {
             overlap[i] += 1
         }
     });
-    console.log(overlap)
+    //console.log(overlap)
     for(var i = 0; i < 18; i++) {
         var rect = d3.select("#world-" + i +" rect")
-        console.log(color(i))
         rect.attr("fill", color(overlap[i])) 
     }
 }
@@ -166,10 +165,12 @@ d3.json("land-50m.json").then(function(world){
           d3.select(this).style("stroke", "black")
           d3.select(this).style("opacity", 0.95)
       })
+      updateWorldMap(months_of_year[1])
   }  
 })
 //======================================================================
 //deprecated function
+/*
 function buildPolygons(lineStrings){
   //set the lineStrings to new polygonList
   var polyList = lineStrings;
@@ -192,3 +193,4 @@ function buildPolygons(lineStrings){
   };
   return polyList;
 };
+*/
