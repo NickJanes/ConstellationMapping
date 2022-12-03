@@ -4,6 +4,8 @@ var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", 
 var months_of_year= ["January","February","March","April","May","June","July",
                      "August","September","October","November","December"];
 
+var defaultMonth = months_of_year[0];
+
 var slider = d3
     .sliderHorizontal()
     .min(0)
@@ -13,7 +15,8 @@ var slider = d3
     .tickFormat((d,i) => months[i])
     .displayValue(false)
     .on('onchange', (val) => {
-        updateConstList(months_of_year[val]);
+        defaultMonth = months_of_year[val];
+        updateConstList(months_of_year[val], latFilter);
         updateWorldMap(months_of_year[val]);
     });
 
