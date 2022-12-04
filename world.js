@@ -29,6 +29,7 @@ var legend = svg_world.selectAll("rect")
         return d;
     }))
     .enter().append("rect")
+    .attr("class", "legendbox")
     .attr("opacity", 1)
     .attr("height", function (d) { return y(d[1]) - y(d[0]); })
     .attr("x", 0)
@@ -179,6 +180,7 @@ d3.json("land-50m.json").then(function(world){
       .attr("id", "world-" + itor)
       .attr("transform", "translate(0,"+offset +")")
       .append("rect")
+      .attr("class", "latbox")
       .attr("height", areaScale[itor])
       .attr("x", 49)
       .attr("width", "472")
@@ -202,7 +204,7 @@ d3.json("land-50m.json").then(function(world){
           d3.select(this).style("stroke", "none")
       })
       .on("click", function(){
-          svg_world.selectAll("rect").each(function() {
+          svg_world.selectAll("rect.latbox").each(function() {
               d3.select(this).style("opacity", 0.3)
           });
 //            .style("opacity", (data) => {console.log(data); return 0})
@@ -211,10 +213,10 @@ d3.json("land-50m.json").then(function(world){
           
           
           var counter = 0;
-          svg_world.selectAll("rect").each(function() {
+          svg_world.selectAll("rect.latbox").each(function() {
               if (d3.select(this).style("stroke") == "black"){
-                  selectedID = [counter-9, counter-8];
-                  console.log('sID', selectedID);
+                  selectedID = [counter, counter+1];
+                  //console.log('sID', selectedID);
               };
               counter = counter+1;
           });
