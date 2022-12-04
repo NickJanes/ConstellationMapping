@@ -232,7 +232,48 @@ d3.json("land-50m.json").then(function(world){
       })
       updateConstList("January")
       updateWorldMap(months_of_year[0])
-  }  
+  } 
+  
+  // Latitude "Scale"    
+  var lats = [90, 80, 70, 60, 50, 40, 30, 20, 10, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90];     
+  var yPos = 0;
+  
+  svg_world.append("text")
+        .attr("x", 525)
+        .attr("y", 10)
+        .attr("fill", "red")
+        .attr("font-weight", "bold")
+        .style("font", "10px")
+        .text("90°"); 
+
+
+  for (let index = 0; index < areaScale.length-1; index++){
+    svg_world.append("text")
+        //.attr("transform", "rotate(70)")
+        .attr("x", 525)
+        .attr("y", yPos + areaScale[index])
+        .attr("fill", function(d){
+            if (lats[index+1] == 0){
+                return "red"
+            }
+            else{
+                return "black"
+            }
+         })
+        .attr("font-weight", "bold")
+        .style("font", "10px")
+        .text(lats[index+1]+"°");
+
+    yPos = yPos + areaScale[index];
+  }
+
+  svg_world.append("text")
+        .attr("x", 525)
+        .attr("y", 471)
+        .attr("fill", "red")
+        .attr("font-weight", "bold")
+        .style("font", "10px")
+        .text("90°");      
 })
 //======================================================================
 //deprecated function
