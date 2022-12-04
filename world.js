@@ -14,10 +14,12 @@ var color = d3.scaleThreshold()
     .domain([1, 2, 3, 4, 5, 6, 7, 8])
     .range(d3.schemeReds[9]);
 
+
 //Draw legend for the color values
 var y = d3.scaleLinear()
     .domain([0, 9])
     .rangeRound([0,200]);
+
 var legend = svg_world.selectAll("rect")
     .attr("class", "legend")
     .data(color.range().map(function (d) {
@@ -33,7 +35,6 @@ var legend = svg_world.selectAll("rect")
     .attr("y", function(d) { return y(d[0]);})
     .attr("width", 10)
     .attr("fill", function (d) { return color(d[0]); });
-
 
 svg_world.append("text")
     .attr("class", "caption")
@@ -212,7 +213,7 @@ d3.json("land-50m.json").then(function(world){
           var counter = 0;
           svg_world.selectAll("rect").each(function() {
               if (d3.select(this).style("stroke") == "black"){
-                  selectedID = [counter, counter+1];
+                  selectedID = [counter-9, counter-8];
                   console.log('sID', selectedID);
               };
               counter = counter+1;
