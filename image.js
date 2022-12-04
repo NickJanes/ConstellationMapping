@@ -1,3 +1,5 @@
+document.cookie = "SameSite=None"
+
 var const_margin = {top: 50, right: 50, bottom: 50, left: 50};
 var const_width = 600 - const_margin.left - const_margin.right;
 var const_height = 600 - const_margin.top - const_margin.bottom;
