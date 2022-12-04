@@ -36,8 +36,23 @@
     left: 60px;
 }
 
+
 #selectButton{
     position: relative;
-    top: -100px;
-    left: 575px;
+    top: -350px;
+    left: 530px;
+    min-width: 190px;
+    /*background-color: red;*/
+    background-color: white;
+    border: none;
+    font-size: 16px;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+}
+
+#selectButton:hover {
+    background-color: #04AA6D;
+    color: black;
 }
