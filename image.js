@@ -8,7 +8,7 @@ var const_svg = d3.select(".container")
     .attr("width", const_width + const_margin.left + const_margin.right)
     .attr("height", const_height + const_margin.top + const_margin.bottom)
     .style("float", "right")
-    .style("margin-right", "100px");
+    .style("margin-right", "30px");
 
 let updateConstVisualization = (name) => {
     const_svg.selectAll('*').remove();
