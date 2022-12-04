@@ -48,10 +48,15 @@ svg_world.append("text")
     .text("Constellations within latitude range");
 
 svg_world.call(d3.axisRight(y)
-    .tickSize(13)
+    .tickSize(0)
+    .tickPadding(10)
+    .offset(3)
     .tickValues(color.domain()))
     .select(".domain")
-    .remove();
+    .remove()
+    ;
+
+
 //======================================================================
 //world projection (Built with reference from Mike Bostock) https://bl.ocks.org/mbostock/3682676
 //======================================================================
