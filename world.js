@@ -16,7 +16,7 @@ var color = d3.scaleThreshold()
 
 //Draw legend for the color values
 var y = d3.scaleLinear()
-    .domain([1, 10])
+    .domain([0, 9])
     .rangeRound([0,200]);
 var legend = svg_world.selectAll("rect")
     .attr("class", "legend")
@@ -37,12 +37,13 @@ var legend = svg_world.selectAll("rect")
 
 svg_world.append("text")
     .attr("class", "caption")
-    .attr("x", 0)
-    .attr("y", 0)
+    .attr("transform", "rotate(90)")
+    .attr("x", 20)
+    .attr("y", -30)
     .attr("fill", "#000")
     .attr("text-anchor", "start")
     .attr("font-weight", "bold")
-    .text("Population per square mile");
+    .text("Constellations within latitude range");
 
 svg_world.call(d3.axisRight(y)
     .tickSize(13)
