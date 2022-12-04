@@ -28,16 +28,20 @@
     </head>
     <body>
         
-        <div class="container"></div>
-        <div id="slider"></div>
-        
+        <div class="viz">
+            <div id="slider"></div>
+            <div class="world"></div>
+            <div class="list">
+                <label for="selectButton">Constellations:</label>
+                <select id="selectButton" size = 11></select>
+            </div>
+            <div class="container"></div>    
+        </div>
         <!-- script files  -->
         <script type="text/javascript" src="slider.js"></script>
         <script type="text/javascript" src="world.js"></script>
         <!-- html divs for drop-down menu -->
         <!-- Initialize a dropdown button -->
-        <label for="selectButton">Constellations:</label>
-        <select id="selectButton" size = 11></select>
         <!-- Create a div where the graph will take place -->
         <div id="my_dataviz"></div>
         <script type="text/javascript" src="drag.js"></script>

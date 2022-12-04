@@ -3,7 +3,7 @@ world_width = 700 - world_margin.left - world_margin.right,
 world_height = 475 - world_margin.top - world_margin.bottom;
 
 
-var svg_world = d3.select("body")
+var svg_world = d3.select(".world")
   .append("svg")
   .attr("width", world_width + world_margin.left + world_margin.right)
   .attr("height", world_height + world_margin.top + world_margin.bottom)
