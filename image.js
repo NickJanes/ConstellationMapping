@@ -40,7 +40,7 @@ d3.csv("con_names.csv", function(error, data) {
 
     var mousemove = function(d) {
     Tooltip
-      .html("The exact value of<br>this cell is: " + d.value)
+      .html(d.value)
       .style("left", (d3.mouse(this)[0]+70) + "px")
       .style("top", (d3.mouse(this)[1]) + "px")
     }
@@ -53,7 +53,7 @@ d3.csv("con_names.csv", function(error, data) {
       .style("opacity", 0.8)
     }
 
-    /*const_svg.append("rect")
+    /*const_svg.selectAll("rect")
         .attr("class", "image")
         .on("mouseover", function(event) {
             div.transition().duration(200).style("opacity", 1);
