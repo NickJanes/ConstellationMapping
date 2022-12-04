@@ -56,12 +56,12 @@ let updateConstList = (month) => {
         }) // corresponding value returned by the button
 
     // When the button is changed, run the updateChart function
-//    d3.select("#selectButton").on("change", function(event,d) {
+    d3.select("#selectButton").on("change", function(event,d) {
 //        // recover the option that has been chosen
-//        const selectedOption = d3.select(this).property("value")
-//        name = selectedOption;
+        const selectedOption = d3.select(this).property("value")
+        name = selectedOption;
 //        // run the updateChart function with this selected option
-//        updateConstVisualization(name)
-//    })
+        updateConstVisualization(name)
+    })
     
 }
