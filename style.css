@@ -64,3 +64,14 @@ label {
 .option:hover {
     background-color: lightcoral;
 }
+
+/*div.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(28, 101, 196);
+    border-radius: 5px;
+    border: none;
+    color: black;
+    pointer-events: none;
+}*/
