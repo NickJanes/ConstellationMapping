@@ -74,6 +74,7 @@ label {
     border: none;
     color: black;
     pointer-events: none;
+    font-size: 10px;
 }
 
 #tooltip.hidden {

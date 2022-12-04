@@ -79,16 +79,7 @@ d3.csv("con_names.csv", function(error, data) {
     .on("mouseleave", mouseleave)
 })
 
-function rowConverter(d) {
-    return {
-        Order : +d.Order,
-        Constellation : d.Constellation,
-        Abbreviation : d.Abbreviation,
-        Description : d.Description,
-        Type : d.Type,
-        Source : d.Source
-    }
-};
+
 
 let updateConstVisualization = (name) => {
     const_svg.selectAll('*').remove();
@@ -110,14 +101,31 @@ let updateConstVisualization = (name) => {
               +".jpg")
     
         .on("mouseover", function(d){
-            
-            d3.csv("con_names.csv", rowConverter, function(error, data) {
-                console.log(data.Order);
+        
+            d3.csv("con_names.csv", (d) => {
+                
+                if (d.Constellation == name){
+                    d3.select("#tooltip")
+                      .select("#constName")
+                      .text(name);
+                    
+                    d3.select("#tooltip")
+                      .select("#abbreviation")
+                      .text(d.Abbreviation);
+                    
+                    d3.select("#tooltip")
+                      .select("#type")
+                      .text(d.Type);
+                    
+                    d3.select("#tooltip")
+                      .select("#source")
+                      .text(d.Source);
+                    
+                    d3.select("#tooltip")
+                      .select("#description")
+                      .text(d.Description);
+                }
             });
-            
-            d3.select("#tooltip")
-              .select("#constName")
-              .text(name, "testing");
         
             d3.select("#tooltip").classed("hidden", false);
         })
