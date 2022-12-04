@@ -40,19 +40,26 @@
 #selectButton{
     position: relative;
     top: -350px;
-    left: 530px;
+    left: 550px;
     min-width: 190px;
     /*background-color: red;*/
-    background-color: white;
     border: none;
     font-size: 16px;
+    line-height: 2.5;
     color: black;
     text-align: center;
+    justify-content: space-evenly;
     padding: 20px;
     cursor: pointer;
+    transition-duration: 0.4s;
 }
 
 #selectButton:hover {
-    background-color: #04AA6D;
-    color: black;
+    background-color: #3e8e41;
+}
+
+#selectButton:active{
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }

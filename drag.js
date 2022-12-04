@@ -29,7 +29,7 @@ let updateConstList = (month) => {
         .selectAll('option')
         .data(filteredData)
         .enter()
-    	.append('option')
+    	.append('option')  
         .text(function (d) {
             if (latFilter == -1){
                 return d.Constellation;
@@ -49,7 +49,7 @@ let updateConstList = (month) => {
                 };   
             }
         })
-    
+
         .attr("value", function (d) {
             d.Constellation;
             //console.log(d.Constellation);
