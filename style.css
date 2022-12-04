@@ -38,8 +38,6 @@
 
 label {
     position: relative;
-    top: -640px;
-    left: 605px;
     font-size: 18px;
     font-weight: bold;
     color: black;
@@ -47,8 +45,6 @@ label {
 
 #selectButton{
     position: relative;
-    top: -350px;
-    left: 445px;
     min-width: 190px;
     border: none;
     font-size: 16px;
@@ -63,4 +59,15 @@ label {
 
 .option:hover {
     background-color: lightcoral;
+}
+.viz{
+  display:flex;
+}
+.list{
+  position: relative;
+  right: 150px;;
+}
+.container{
+  position: relative;
+  right: 140px;
 }
