@@ -15,33 +15,36 @@ var color = d3.scaleThreshold()
     .range(d3.schemeReds[9]);
 
 //Draw legend for the color values
-var x = d3.scaleSqrt()
-    .domain([0, 10])
-    .rangeRound([400, 800]);
+var y = d3.scaleLinear()
+    .domain([1, 10])
+    .rangeRound([0,200]);
 var legend = svg_world.selectAll("rect")
+    .attr("class", "legend")
     .data(color.range().map(function (d) {
         d = color.invertExtent(d);
-        if (d[0] == null) d[0] = x.domain()[0];
-        if (d[1] == null) d[1] = x.domain()[1];
+        if (d[0] == null) d[0] = y.domain()[0];
+        if (d[1] == null) d[1] = y.domain()[1];
         return d;
     }))
     .enter().append("rect")
-    .attr("height", 8)
-    .attr("x", function (d) { return x(d[0]); })
-    .attr("width", function (d) { return x(d[1]) - x(d[0]); })
+    .attr("opacity", 1)
+    .attr("height", function (d) { return y(d[1]) - y(d[0]); })
+    .attr("x", 0)
+    .attr("y", function(d) { return y(d[0]);})
+    .attr("width", 10)
     .attr("fill", function (d) { return color(d[0]); });
 
 
 svg_world.append("text")
     .attr("class", "caption")
-    .attr("x", x.range()[0])
+    .attr("x", 0)
     .attr("y", 0)
     .attr("fill", "#000")
     .attr("text-anchor", "start")
     .attr("font-weight", "bold")
     .text("Population per square mile");
 
-svg_world.call(d3.axisBottom(x)
+svg_world.call(d3.axisRight(y)
     .tickSize(13)
     .tickValues(color.domain()))
     .select(".domain")
