@@ -65,7 +65,7 @@ label {
     background-color: lightcoral;
 }
 
-/*div.tooltip {
+#tooltip {
     position: absolute;
     text-align: center;
     padding: 10px;
@@ -74,4 +74,8 @@ label {
     border: none;
     color: black;
     pointer-events: none;
-}*/
+}
+
+#tooltip.hidden {
+    display: none;
+}
