@@ -28,10 +28,18 @@ let updateConstVisualization = (name) => {
         }
         
         const_svg.append("svg:image")
-            .attr("xlink:href", "https://www.iau.org/static/archives/images/screen/"+abr+".jpg")
+            .attr("xlink:href", function(d){
+                if (abr == "gem"){
+                    return "https://www.iau.org/static/archives/images/screen/gem_new.jpg"
+                }
+                else if (abr == "ser"){
+                    return "https://www.iau.org/static/archives/images/screen/sercd.jpg"
+                }
+                else{
+                    return "https://www.iau.org/static/archives/images/screen/"+abr+".jpg"
+                }
+            })
             .on("mouseover", function(d){
-            
-                //console.log(name, abr, type, source, des);
                 
                 d3.select("#tooltip")
                   .select("#constName")

@@ -7,14 +7,14 @@ Order,Constellation,Abbreviation,Description,Type,Source
 6,Ara,Ara,The Altar,Myth/Legend,Almagest
 7,Aries,Ari,The Ram,Zodiac,Almagest
 8,Auriga,Aur,The Charioteer,Myth/Legend,Almagest
-9,Bootes,Boo,The Herdsman,Myth/Legend,Almagest
+9,Boötes,Boo,The Herdsman,Myth/Legend,Almagest
 10,Caelum,Cae,The Chisel,Scientific,Lacaille
 11,Camelopardalis,Cam,The Giraffe,Animal,Bartsch
 12,Cancer,Cnc,The Crab,Zodiac,Almagest
 13,Canes Venatici,CVn,The Hunting Dogs,Animal,Hevelius
 14,Canis Major,CMa,The Greater Dog (companion of Orion),Myth/Legend,Almagest
 15,Canis Minor,CMi,The Lesser Dog (companion of Orion),Myth/Legend,Almagest
-16,Capricornius,Cap,The Sea Goat,Zodiac,Almagest
+16,Capricornus,Cap,The Sea Goat,Zodiac,Almagest
 17,Carina,Car,The Keel (part of Argo Navis),Myth/Legend,Lacaille
 18,Cassiopeia,Cas,The Queen of Ethiopia,Myth/Legend,Almagest
 19,Centaurus,Cen,The Centaur,Myth/Legend,Almagest
@@ -30,7 +30,7 @@ Order,Constellation,Abbreviation,Description,Type,Source
 29,Crater,Crt,The Cup (the goblet of Apollo),Myth/Legend,Almagest
 30,Crux,Cru,The Southern Cross,Misc,
 31,Cygnus,Cyg,The Swan,Myth/Legend,Almagest
-32,Delphinius,Del,The Dolphin,Myth/Legend,Almagest
+32,Delphinus,Del,The Dolphin,Myth/Legend,Almagest
 33,Dorado,Dor,The Goldfish/The Swordfish,Animal,Bayer
 34,Draco,Dra,The Dragon,Myth/Legend,Almagest
 35,Equuleus,Equ,The Little Horse,Myth/Legend,Almagest
@@ -65,7 +65,7 @@ Order,Constellation,Abbreviation,Description,Type,Source
 64,Phoenix,Phe,The Phoenix,Myth/Legend,Bayer
 65,Pictor,Pic,The Painter’s Easel,Scientific,Lacaille
 66,Pisces,Psc,The Fishes,Zodiac,Almagest
-67,Piscus Austrinus,PsA,The Southern Fish,Myth/Legend,Almagest
+67,Piscis Austrinus,PsA,The Southern Fish,Myth/Legend,Almagest
 68,Puppis,Pup,The Stern (of Argo Navis),Myth/Legend,Lacaille
 69,Pyxis,Pyx,The Ships’s Compass (or Argo Navis),Myth/Legend,Lacaille
 70,Reticulum,Ret,The Net,Scientific,Lacaille
@@ -80,7 +80,7 @@ Order,Constellation,Abbreviation,Description,Type,Source
 79,Telescopium,Tel,The Telescope,Scientific,Lacaille
 80,Triangulum,Tri,The Triangle,Misc,Almagest
 81,Triangulum Australe,TrA,The Southern Triangle,Misc,Bayer
-82,Tucuna,Tuc,The Toucan,Animal,Bayer
+82,Tucana,Tuc,The Toucan,Animal,Bayer
 83,Ursa Major,UMa,The Great Bear,Myth/Legend,Almagest
 84,Ursa Minor,UMi,The Lesser Bear,Myth/Legend,Almagest
 85,Vela,Vel,The Sails (of Argo Navis),Myth/Legend,Lacaille
