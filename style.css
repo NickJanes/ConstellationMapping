@@ -80,13 +80,13 @@ image{
 #tooltip {
     position: absolute;
     text-align: center;
-    padding: 10px;
-    background-color: rgb(28, 101, 196);
+    padding: 5px;
+    background-color: rgb(67, 124, 200);
     border-radius: 5px;
     border: none;
     color: black;
     pointer-events: none;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 #tooltip.hidden {

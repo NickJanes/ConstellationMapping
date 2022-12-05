@@ -39,8 +39,27 @@ let updateConstVisualization = (name) => {
                     return "https://www.iau.org/static/archives/images/screen/"+abr+".jpg"
                 }
             })
-            .on("mouseover", function(d){
+            .on("mouseover", function(event, d){
                 
+                // position of tooltip
+                d3.select("#tooltip")
+                  // using d3 pointer 
+                  //.style("left", (d3.pointer(event)[0]+ 800 + "px"))
+                  //.style("top", (d3.pointer(event)[1]+ 500 + "px"));
+
+                  // using event.pageX
+                  .style("left", (event.pageX) + "px")
+                  .style("top", (event.pageY + 300) + "px");
+
+                  // potential way using transform
+                  //.attr("transform", `translate(${ d.x + 500 },${ d.y - 100})`);
+
+                  // potential way using style
+                  //.style("left", `${(d.x + 35)}px`)
+                  //.style("top", `${(d.y - 200)}px`);
+                  
+
+
                 d3.select("#tooltip")
                   .select("#constName")
                   .text(name);
