@@ -230,7 +230,6 @@ d3.json("land-50m.json").then(function(world){
         
       })
       updateConstList("January")
-      updateWorldMap(months_of_year[0])
   } 
   
   // Latitude "Scale"    
