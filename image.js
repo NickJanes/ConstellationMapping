@@ -13,19 +13,50 @@ var const_svg = d3.select(".container")
 let updateConstVisualization = (name) => {
     const_svg.selectAll('*').remove();
     
-    // Stellarium
-    /*
-    const_svg.append("svg:image")
-        .attr("xlink:href", "https://raw.githubusercontent.com/Stellarium/stellarium/master/skycultures/modern/"
-              +name.toLowerCase().replace(" ", "-").replace("ö", "o")
-              +".png")
-        .attr('viewBox', '-0 -5 10 10');
-    */
+    var abr;
+    var type;
+    var source;
+    var des;
     
-    // Sea Sky
-    // http://www.seasky.org/constellations/constellations.html
-    const_svg.append("svg:image")
-        .attr("xlink:href", "http://www.seasky.org/constellations/assets/images/"
-              +name.toLowerCase().replace(" ", "-").replace("ö", "o")
-              +".jpg");
+    d3.csv("con_names.csv", (d) => {
+
+        if (name == d.Constellation){
+            abr = d.Abbreviation.toLowerCase();
+            type = d.Type;
+            source = d.Source;
+            des = d.Description;
+        }
+        
+        const_svg.append("svg:image")
+            .attr("xlink:href", "https://www.iau.org/static/archives/images/screen/"+abr+".jpg")
+            .on("mouseover", function(d){
+            
+                //console.log(name, abr, type, source, des);
+                
+                d3.select("#tooltip")
+                  .select("#constName")
+                  .text(name);
+
+                d3.select("#tooltip")
+                  .select("#abbreviation")
+                  .text(abr);
+
+                d3.select("#tooltip")
+                  .select("#type")
+                  .text(type);
+
+                d3.select("#tooltip")
+                  .select("#source")
+                  .text(source);
+
+                d3.select("#tooltip")
+                  .select("#description")
+                  .text(des);
+            
+                d3.select("#tooltip").classed("hidden", false);
+            })
+            .on("mouseout", function() {
+                 d3.select("#tooltip").classed("hidden", true);	
+             });          
+    });
 }
