@@ -166,14 +166,13 @@ svg_world.append("path")
 var latFilter = -1;
 var selectedID;
 let con_month_and_lat = [];
-
+var init = [1,2,2,3,3,4,5,7,7,8,8,8,8,8,8,8,7,6]
 d3.json("land-50m.json").then(function(world){
   
   svg_world.insert("path", ".graticule")
       .datum(topojson.feature(world, world.objects.land))
       .attr("class", "land")
       .attr("d", path);
-  
   //draw the selectable area
   var areaScale = [52, 52, 32, 23, 19, 16, 15, 13, 13, 14, 14, 14, 16, 19, 23, 32, 52, 52]
   //console.log(areaScale.length)
@@ -190,7 +189,7 @@ d3.json("land-50m.json").then(function(world){
       .attr("x", 49)
       .attr("width", "472")
       .attr("rx", "1")
-      .attr("fill", "lightgray")
+      .attr("fill", color(init[itor]))
       .attr("stroke", "none")
       .attr("stroke-width", "2px")
       .attr("opacity", 0.3)
@@ -231,7 +230,6 @@ d3.json("land-50m.json").then(function(world){
         
       })
       updateConstList("January")
-      updateWorldMap(months_of_year[0])
   } 
   
   // Latitude "Scale"    
