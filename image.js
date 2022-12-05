@@ -49,14 +49,14 @@ let updateConstVisualization = (name) => {
 
                   // using event.pageX
                   .style("left", (event.pageX) + "px")
-                  .style("top", (event.pageY + 300) + "px");
+                  .style("top", (event.pageY) + "px");
 
                   // potential way using transform
                   //.attr("transform", `translate(${ d.x + 500 },${ d.y - 100})`);
 
                   // potential way using style
                   //.style("left", `${(d.x + 35)}px`)
-                  //.style("top", `${(d.y - 200)}px`);
+                  //.style("top", `${(d.y + 300)}px`);
                   
 
 
@@ -81,6 +81,12 @@ let updateConstVisualization = (name) => {
                   .text(des);
             
                 d3.select("#tooltip").classed("hidden", false);
+            })
+            .on("mousemove", function(event){
+                d3.select("#tooltip")
+                  .style("left", (event.pageX) + "px")
+                  .style("top", (event.pageY) + "px");
+
             })
             .on("mouseout", function() {
                  d3.select("#tooltip").classed("hidden", true);	

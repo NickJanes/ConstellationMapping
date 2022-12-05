@@ -27,7 +27,18 @@
         
     </head>
     <body>
-        
+
+        <div class="viz">
+            <div id="slider"></div>
+            <div class="world"></div>
+            <div class="list">
+                <label for="selectButton">Constellations:</label>
+                <select id="selectButton" size = 11></select>
+            </div>
+
+            <div class="container"></div>    
+        </div>
+
         <div id="tooltip" class="hidden">
             <pre style = "text-align: center;"><span id ="constName"></span></pre>
             <pre style = "text-align: center">(<span id="abbreviation"></span>)</pre>
@@ -36,15 +47,6 @@
             <pre style = "text-align: center"><span id="description"></span></pre>
         </div>
         
-        <div class="viz">
-            <div id="slider"></div>
-            <div class="world"></div>
-            <div class="list">
-                <label for="selectButton">Constellations:</label>
-                <select id="selectButton" size = 11></select>
-            </div>
-            <div class="container"></div>    
-        </div>
         <!-- script files  -->
         <script type="text/javascript" src="slider.js"></script>
         <script type="text/javascript" src="world.js"></script>
