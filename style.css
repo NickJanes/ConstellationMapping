@@ -78,15 +78,16 @@ image{
 }
 
 #tooltip {
+    opacity: 0.92;
     position: absolute;
     text-align: center;
     padding: 5px;
-    background-color: rgb(67, 124, 200);
+    background-color: rgb(224, 101, 105);
     border-radius: 5px;
     border: none;
     color: black;
     pointer-events: none;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #tooltip.hidden {
