@@ -66,7 +66,7 @@ let updateConstVisualization = (name) => {
 
                 d3.select("#tooltip")
                   .select("#abbreviation")
-                  .text(abr);
+                  .text(abr.toUpperCase());
 
                 d3.select("#tooltip")
                   .select("#type")
