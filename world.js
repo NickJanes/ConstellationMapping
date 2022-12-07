@@ -33,24 +33,24 @@ var legend = svg_world.selectAll("rect")
     .attr("opacity", 1)
     .attr("height", function (d) { return y(d[1]) - y(d[0]); })
     .attr("x", 0)
-    .attr("y", function(d) { return y(d[0]);})
+    .attr("y", function(d) { return y(d[0])+120;})
     .attr("width", 10)
     .attr("fill", function (d) { return color(d[0]); });
 
 svg_world.append("text")
     .attr("class", "caption")
     .attr("transform", "rotate(90)")
-    .attr("x", 20)
+    .attr("x", 110)
     .attr("y", -30)
     .attr("fill", "#000")
     .attr("text-anchor", "start")
     .attr("font-weight", "bold")
-    .text("Constellations within latitude range");
+    .text("Number of Constellations within latitude range");
 
 svg_world.call(d3.axisRight(y)
     .tickSize(0)
     .tickPadding(10)
-    .offset(3)
+    .offset(123)
     .tickValues(color.domain()))
     .select(".domain")
     .remove()
